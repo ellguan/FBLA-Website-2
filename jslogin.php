@@ -18,7 +18,7 @@
             $_SESSION['userlogin'] = $user;
             echo '1';
         }else{
-            echo 'There was no user found with that username.';
+            echo 'The username or the password does not match an account in our database.';
         }
     }else{
         echo 'There were errors while connecting to database.';

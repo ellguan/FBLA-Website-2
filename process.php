@@ -7,7 +7,7 @@
         $firstname   = $_POST['firstname'];
         $lastname    = $_POST['lastname'];
         $email       = $_POST['email'];
-        $secretword1  = sha1($_POST['secretword']);
+        $secretword1  = ($_POST['secretword']);
         
         $sql = "INSERT INTO test (firstname, lastname, email, secretword ) values(?,?,?,?)";
         $stmtinsert = $conn->prepare($sql);

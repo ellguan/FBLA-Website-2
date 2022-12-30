@@ -3,9 +3,9 @@
 
     session_start();
     
-    if(!isset($_SESSION['userlogin'])){
-        header("location: login.php"); //redirects to main page if person is already authenticated
-    }
+    // if(!isset($_SESSION['userlogin'])){
+    //     header("location: login.php"); //redirects to main page if person is already authenticated
+    // }
 
     if(isset($_GET['logout'])){
         session_destroy();
@@ -87,5 +87,6 @@
             </form>
         </div>
         <a href="index.php?logout=true">Logout</a>
+        <div id="footer">&copy; 2010-<?php echo date("Y");?></div>
     </body>
 </html>

@@ -20,10 +20,15 @@ function checkoutButtons(){
                 icon: 'success',
                 title: 'Added to cart!',
                 showConfirmButton: false,
-                timer: 2500
+                timer: 1500
               })
         });
     }
+}
+
+function reduceArrays(array1, array2){
+    const filteredArray = array1.filter(value => array2.includes(value));
+    return filteredArray;
 }
 
 //For shoppingcart.php page

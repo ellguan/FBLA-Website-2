@@ -1,20 +1,7 @@
 <?php
     session_start();
 
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "useraccounts";
-     
-    // connect the database with the server
-    $conn = new mysqli($servername,$username,$password,$dbname);
-     
-    // if error occurs 
-    if ($conn -> connect_errno)
-    {
-       echo "Failed to connect to MySQL: " . $conn -> connect_error;
-       exit();
-    }
+    require_once('mysqlconfig.php');
 
     if (count($_SESSION['cart']) != 0){
         $in  = str_repeat('?,', count($_SESSION['cart']) - 1) . '?';

@@ -85,19 +85,21 @@
         <p id="nothingincart">Nothing in your shopping cart yet!</p>
         <p id="total">Total: $<?php if (isset($total)){echo $total;}else{echo 0;} ?></p> <!--change so it only shows up when cart is full-->
 
-        <button id="checkout">Checkout!</button>
+        <button id="checkout" onclick="proceedToCheckout()">Checkout!</button>
+        <button id="addmore" onclick="goHome()">Add more products!</button>
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
         <script src="script.js"></script>
-        <script>
-            let checkout = document.getElementById("checkout");
-            checkout.addEventListener("click", proceedToCheckout);
-            
+        <script>        
             var total = Number(<?php echo $total ?>);
         
             function proceedToCheckout(){ //make sure to link this to checkout page
-                <?php $_SESSION['cart'] = array();
-                echo implode("", $_SESSION['cart'])?>
+                <?php //$_SESSION['cart'] = array();
+                //echo implode("", $_SESSION['cart'])?>
+            }
+
+            function goHome(){
+                window.location.href = "shop.php";
             }
 
             function deleteProduct(id, price){

@@ -2,9 +2,6 @@
     session_start();
 
     require_once('mysqlconfig.php');
-
-    $cart = array();
-    $_SESSION["cart"] = $cart;
 ?>
 
 <!DOCTYPE html>

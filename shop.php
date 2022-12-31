@@ -46,10 +46,13 @@
         <div id="noodlepics">
             <img src="pictures/noodles/shin.jpg" class="addtocart shin china eastasia spicy ramen" alt="Shin Ramen">
             <button class="addtocart shin korea eastasia spicy ramen" id="shin">Add to cart!</button>
-            <img src="pictures/noodles/maggi.jpg" class="addtocart india southasia nonspicy maggi" alt="Maggi">
-            <button class="addtocart india southasia nonspicy maggi" id="maggi">Add to cart!</button>
+            <img src="pictures/noodles/maggi.jpg" class="addtocart india southasia spicy maggi" alt="Maggi">
+            <button class="addtocart india southasia spicy maggi" id="maggi">Add to cart!</button>
             <img src="pictures/noodles/jinmailang.jpg" class="addtocart jinmailang china eastasia nonspicy ramen" alt="Jin Mai Lang">
             <button class="addtocart jinmailang china eastasia nonspicy ramen" id="jinmailang">Add to cart!</button>
+        </div>
+        <div>
+            <button id="checkout" onclick="checkout()">Checkout!</button>
         </div>
         <div id="filters">
             <form action="<?php $_SERVER['PHP_SELF'] ?>" method="GET" id="filterform">
@@ -79,6 +82,9 @@
     <script type="text/javascript">
         function goHome(){
             window.location.href = "shop.php";
+        }
+        function checkout(){
+            window.location.href = "shoppingcart.php";
         }
     </script>
 

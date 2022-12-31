@@ -48,6 +48,9 @@
             body{
                 color: white;
             }
+            #nothingincart, #checkout{
+                display:none;
+            }
             
         </style>
     </head>
@@ -66,10 +69,11 @@
                     foreach($row as $rows)
                     { 
                 ?>
-                    <tr>
+                    <tr id="<?php echo $rows['id']?>">
                         <td><?php echo $rows['fullname'] ?></td>
                         <td><img src = "<?php echo $rows['image']; ?>" ></td>
                         <td>$<?php echo $rows['price']; ?></td>
+                        <td><button onclick="deleteProduct('<?php echo $rows['id']?>', <?php echo $rows['price']; ?>)">Delete</button></td>
                     </tr>
                 <?php 
                     }else{
@@ -78,7 +82,8 @@
                 ?>
             </tbody>
         </table>
-        <p>Total: $<?php echo $total ?></p> <!--change so it only shows up when cart is full-->
+        <p id="nothingincart">Nothing in your shopping cart yet!</p>
+        <p id="total">Total: $<?php if (isset($total)){echo $total;}else{echo 0;} ?></p> <!--change so it only shows up when cart is full-->
 
         <button id="checkout">Checkout!</button>
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -87,11 +92,29 @@
         <script>
             let checkout = document.getElementById("checkout");
             checkout.addEventListener("click", proceedToCheckout);
-
-            function proceedToCheckout(){
+            
+            var total = Number(<?php echo $total ?>);
+        
+            function proceedToCheckout(){ //make sure to link this to checkout page
                 <?php $_SESSION['cart'] = array();
                 echo implode("", $_SESSION['cart'])?>
             }
+
+            function deleteProduct(id, price){
+                document.getElementById(id).style.display = "none";
+                total = total - Number(price);
+                document.getElementById('nothingincart').style.display = "block";
+                document.getElementById('total').innerHTML = "Total = $" + total;
+                document.getElementById('checkout').style.display = "none";
+            }
+
+            function displayCheckout(){
+                if (total > 0){
+                    document.getElementById('checkout').style.display = "block";
+                }
+            }
+
+            displayCheckout();
         </script>
     </body>
     <?php

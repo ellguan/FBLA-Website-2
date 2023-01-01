@@ -41,7 +41,7 @@
     </head>
     <body>
         <div id="noodlepics">
-            <img src="pictures/noodles/shin.jpg" class="addtocart shin china eastasia spicy ramen" alt="Shin Ramen">
+            <img src="pictures/noodles/shin.jpg" class="addtocart shin southkorea eastasia spicy ramen" alt="Shin Ramen">
             <button class="addtocart shin korea eastasia spicy ramen" id="shin">Add to cart!</button>
             <img src="pictures/noodles/maggi.jpg" class="addtocart india southasia spicy maggi" alt="Maggi">
             <button class="addtocart india southasia spicy maggi" id="maggi">Add to cart!</button>
@@ -59,6 +59,9 @@
                 <input type="checkbox" value="nonspicy" name="filters[]" id="nonspicy">
                 <label for="nonspicy">Non-spicy</label>
                 <br>
+                <input type="checkbox" value="china" name="filters[]" id="china">
+                <label for="china">China</label>
+                <br>
                 <input type="submit" value="Apply filters!">
                 <br>
             </form>
@@ -69,7 +72,7 @@
                 <input type="text" name="query">
                 <input type="submit" value="Search!">
             </form>
-            <button type="button" id="goback" onclick="goHome()">Go back!</button>
+            <button type="button" id="goback" onclick="goShop()">Go back!</button>
         </div>
     </body>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -77,12 +80,7 @@
     <script src="script.js"></script>
     
     <script type="text/javascript">
-        function goHome(){
-            window.location.href = "shop.php";
-        }
-        function checkout(){
-            window.location.href = "shoppingcart.php";
-        }
+        
     </script>
 
     <!--PHP code for filters-->

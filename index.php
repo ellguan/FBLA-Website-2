@@ -87,7 +87,6 @@
             </form>
         </div>
         <a href="index.php?logout=true">Logout</a>
-        <p> Bunnies are super super cute! They are great, fuzzy companions who will love you and fill your heart! (not your stomach)</p>
         <div id="footer">&copy; 2010-<?php echo date("Y");?></div>
     </body>
 </html>

@@ -79,7 +79,7 @@
                         <td><?php echo $rows['fullname'] ?></td>
                         <td><img src = "<?php echo $rows['image']; ?>" ></td>
                         <td><?php echo $_SESSION['cartamount'][$i]; ?></td>
-                        <td>$<?php echo $rows['price']; ?></td>
+                        <td>$<?php echo $rows['price']*$_SESSION['cartamount'][$i]; ?></td>
                         <td><button onclick="deleteProduct('<?php echo $rows['id']?>', <?php echo $rows['price']; ?>)">Delete</button></td>
                     </tr>
                 <?php 

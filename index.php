@@ -3,9 +3,9 @@
 
     session_start();
     
-    if(!isset($_SESSION['userlogin'])){
-        header("location: login.php"); //redirects to main page if person is already authenticated
-    }
+    // if(!isset($_SESSION['userlogin'])){
+    //     header("location: login.php"); //redirects to main page if person is already authenticated
+    // }
 
     if(isset($_GET['logout'])){
         session_destroy();
@@ -88,5 +88,6 @@
         </div>
         <a href="index.php?logout=true">Logout</a>
         <p> Bunnies are super super cute! They are great, fuzzy companions who will love you and fill your heart! (not your stomach)</p>
+        <div id="footer">&copy; 2010-<?php echo date("Y");?></div>
     </body>
 </html>

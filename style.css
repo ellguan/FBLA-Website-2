@@ -70,10 +70,8 @@ a{
     color:#F1BA0A;
     font-size:200%;
     padding:10%;
+
     background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
 }
 
 #form{
@@ -125,6 +123,18 @@ input[type=submit]:hover{
 
 #slideshow{
     max-height: 100px;
+}
+
+/*Styling for Shop.php*/
+
+#shin button{
+    border:#F1BA0A 3px solid;
+    background-color:black;
+    padding:5px;
+    font-size:60%;
+    cursor:pointer;
+    transition-duration:.4s;
+    text-decoration:none;
 }
 
 @media (min-width: 1000px){

@@ -13,6 +13,9 @@
         header("location: login.php");
     }
 
+    $_SESSION["cart"] = array();
+    $_SESSION["cartamount"] = array();
+
 ?>
 <!DOCTYPE html>
 <html>

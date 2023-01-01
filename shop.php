@@ -50,6 +50,7 @@
         </div>
         <div>
             <button id="checkout" onclick="checkout()">Checkout!</button>
+            <button id="destroy" onclick="sessionDestroy()">session destroy</button>
         </div>
         <div id="filters">
             <form action="<?php $_SERVER['PHP_SELF'] ?>" method="GET" id="filterform">
@@ -82,6 +83,9 @@
         }
         function checkout(){
             window.location.href = "shoppingcart.php";
+        }
+        function sessionDestroy(){
+            <?php //session_destroy(); ?>
         }
     </script>
 

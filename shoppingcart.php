@@ -22,8 +22,10 @@
             $row = $result->fetch_all(MYSQLI_ASSOC);
 
             $total = 0;
+            $i = 0;
             foreach($row as $rows){
-                $total += $rows['price'];
+                $total += $rows['price'] * $_SESSION['cartamount'][$i];
+                $i +=1; 
             }
 
         }
@@ -60,25 +62,31 @@
                 <tr>
                     <th>Name</th>
                     <th>Image</th>
+                    <th>Count</th>
                     <th>Price</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
+                $i = 0;
                 if(!empty($row))
+                    
                     foreach($row as $rows)
+                        
                     { 
                 ?>
                     <tr id="<?php echo $rows['id']?>">
                         <td><?php echo $rows['fullname'] ?></td>
                         <td><img src = "<?php echo $rows['image']; ?>" ></td>
+                        <td><?php echo $_SESSION['cartamount'][$i]; ?></td>
                         <td>$<?php echo $rows['price']; ?></td>
                         <td><button onclick="deleteProduct('<?php echo $rows['id']?>', <?php echo $rows['price']; ?>)">Delete</button></td>
                     </tr>
                 <?php 
-                    }else{
-                        echo "Nothing in your shopping cart yet!";
-                    }
+                    $i += 1;
+                }else{
+                    echo "Nothing in your shopping cart yet!";
+                }
                 ?>
             </tbody>
         </table>

@@ -22,8 +22,10 @@
             $row = $result->fetch_all(MYSQLI_ASSOC);
 
             $total = 0;
+            $i = 0;
             foreach($row as $rows){
-                $total += $rows['price'];
+                $total += $rows['price'] * $_SESSION['cartamount'][$i];
+                $i +=1; 
             }
 
         }
@@ -60,25 +62,31 @@
                 <tr>
                     <th>Name</th>
                     <th>Image</th>
+                    <th>Count</th>
                     <th>Price</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
+                $i = 0;
                 if(!empty($row))
+                    
                     foreach($row as $rows)
+                        
                     { 
                 ?>
                     <tr id="<?php echo $rows['id']?>">
                         <td><?php echo $rows['fullname'] ?></td>
                         <td><img src = "<?php echo $rows['image']; ?>" ></td>
-                        <td>$<?php echo $rows['price']; ?></td>
-                        <td><button onclick="deleteProduct('<?php echo $rows['id']?>', <?php echo $rows['price']; ?>)">Delete</button></td>
+                        <td><?php echo $_SESSION['cartamount'][$i]; ?></td>
+                        <td>$<?php echo $rows['price']*$_SESSION['cartamount'][$i]; ?></td>
+                        <td><button onclick="deleteProduct('<?php echo $rows['id']?>', <?php echo $rows['price']*$_SESSION['cartamount'][$i]; ?>)">Delete</button></td>
                     </tr>
                 <?php 
-                    }else{
-                        echo "Nothing in your shopping cart yet!";
-                    }
+                    $i += 1;
+                }else{
+                    echo "Nothing in your shopping cart yet!";
+                }
                 ?>
             </tbody>
         </table>
@@ -86,7 +94,7 @@
         <p id="total">Total: $<?php if (isset($total)){echo $total;}else{echo 0;} ?></p> <!--change so it only shows up when cart is full-->
 
         <button id="checkout" onclick="proceedToCheckout()">Checkout!</button>
-        <button id="addmore" onclick="goHome()">Add more products!</button>
+        <button id="addmore" onclick="goShop()">Add more products!</button>
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
         <script src="script.js"></script>
@@ -98,18 +106,6 @@
                 //echo implode("", $_SESSION['cart'])?>
             }
 
-            function goHome(){
-                window.location.href = "shop.php";
-            }
-
-            function deleteProduct(id, price){
-                document.getElementById(id).style.display = "none";
-                total = total - Number(price);
-                document.getElementById('nothingincart').style.display = "block";
-                document.getElementById('total').innerHTML = "Total = $" + total;
-                document.getElementById('checkout').style.display = "none";
-            }
-
             function displayCheckout(){
                 if (total > 0){
                     document.getElementById('checkout').style.display = "block";
@@ -119,6 +115,20 @@
             displayCheckout();
         </script>
     </body>
+    
+    <!--PHP code for deleting products in cart-->
+    <?php
+        if (isset($_POST['id'])){
+            echo "hello";
+            $deletedProduct = $_POST['id'];
+            $productIndex = array_search($deletedProduct, $_SESSION["cart"]);
+            unset($_SESSION["cart"][$productIndex]);
+            unset($_SESSION["cartamount"][$productIndex]);
+            array_values($_SESSION["cart"]);
+            array_values($_SESSION["cartamount"]);
+        }
+    ?>
+
     <?php
         mysqli_close($conn);
     ?>

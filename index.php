@@ -1,6 +1,5 @@
 <?php
     require_once('config.php');
-
     session_start();
     
     // if(!isset($_SESSION['userlogin'])){
@@ -13,6 +12,10 @@
         header("location: login.php");
     }
 
+    //creates the arrays for the shop and shopping cart
+    $_SESSION["cart"] = array();
+    $_SESSION["cartamount"] = array();
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -24,11 +27,15 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300&display=swap" rel="stylesheet">
+
+        <style>
+            
+        </style>
     </head>
     <body>
         <div id="title">
             <h1>Noodles start here.</h1>
-            <button><a href="https://www.aauw.org/resources/research/the-stem-gap/">Start exploring &#8594</a></button> <!--change button link-->
+            <button id="gotoshop" onclick="goShop()">Start exploring &#8594</button> <!--change button link-->
         </div>
         <br>
         <br>
@@ -46,18 +53,19 @@
         <div id="slideshow">
             <h1>SHOP BY...</h1>
             <div id="flagslideshow">
-                <!-- <img src="pictures/flags/china.png">
-                <img src="pictures/flags/india.webp">
-                <img src="pictures/flags/bangladesh.png">
-                <img src="pictures/flags/indonesia.webp">
-                <img src="pictures/flags/japan.png">
-                <img src="pictures/flags/malaysia.png">
-                <img src="pictures/flags/philippines.webp">
-                <img src="pictures/flags/south korea.webp">
-                <img src="pictures/flags/thailand.webp">
-                <img src="pictures/flags/vietnam.png"> -->
+                <img src="pictures/flags/china.png" onclick="filter('china')">
+                <img src="pictures/flags/india.webp" onclick="filter('india')">
+                <img src="pictures/flags/bangladesh.png" onclick="filter('bangladesh')">
+                <img src="pictures/flags/indonesia.webp" onclick="filter('indonesia')">
+                <img src="pictures/flags/japan.png" onclick="filter('japan')">
+                <img src="pictures/flags/malaysia.png" onclick="filter('malaysia')">
+                <img src="pictures/flags/philippines.webp" onclick="filter('philippines')">
+                <img src="pictures/flags/south korea.webp" onclick="filter('southkorea')">
+                <img src="pictures/flags/thailand.webp" onclick="filter('thailand')">
+                <img src="pictures/flags/vietnam.png" onclick="filter('vietnam')">
             </div>
-            <button><a href="https://www.aauw.org/resources/research/the-stem-gap/">More filters &#8594</a></button>
+            <h1>Country?</h1>
+            <button onclick="goShop()">More filters &#8594</button>
         </div>
 
         <div id="parallax">
@@ -88,5 +96,9 @@
         </div>
         <a href="index.php?logout=true">Logout</a>
         <div id="footer">&copy; 2010-<?php echo date("Y");?></div>
+        <script src="script.js" type="text/javascript"></script>
+        <script>
+            
+        </script>
     </body>
 </html>

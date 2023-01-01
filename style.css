@@ -19,49 +19,46 @@ body{
     color: #F1BA0A;
 }
 
-#title button{
+button{
     border:#F1BA0A 3px solid;
     background-color:black;
+    color:#F1BA0A;
     padding:5px;
     font-size:60%;
-    cursor:pointer;
     transition-duration:.4s;
     text-decoration:none;
-}
-
-button a{
-    text-decoration:none;
-    color:#F1BA0A;
     font-family: 'Jost', sans-serif;
-  }
+}
 
 button:hover{
-    background-color:#F1BA0A;
-    border:#A70B0B;
-}
-
-button a:hover{
-    color:#A70B0B;
-  }
-
-a{
+    border:#A70B0B 3px solid;
+    color: #A70B0B;
     cursor:pointer;
-  }
+}
 
 #slideshow{
     background-color:#F1BA0A;
     padding:10%;
     font-size:150%;
-}
-
-#slideshow button a{
-    color:black;
-    font-size:150%;
+    min-height:800px;
 }
 
 #slideshow button{
     background-color:#F1BA0A;
+    font-size:150%;
+    color:black;
     border:black 3px solid;
+}
+
+#slideshow button:hover{
+    color:#A70B0B;
+    border:#A70B0B 3px solid;
+}
+
+#slideshow img{
+    height:25%;
+    width:25%;
+    cursor:pointer;
 }
 
 #parallax{
@@ -137,6 +134,7 @@ input[type=submit]:hover{
     text-decoration:none;
 }
 
+/*Styling for computer-specific displays*/
 @media (min-width: 1000px){
     #title{
         font-size:300%;

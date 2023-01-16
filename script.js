@@ -2,11 +2,53 @@
 function goShop(){
     window.location.href = "shop.php";
 }
+function goRegister(){
+    window.location.href = "registration.php";
+}
+function goHome(){
+    window.location.href = "index.php";
+}
 
 //For index.php page
 function filter(country){
     window.location.href = "shop.php?filters%5B%5D=" + country;
 }
+
+function menuopen(){
+    document.getElementById("menu").style.width = "100%";
+}
+
+function menuclose(){
+    document.getElementById("menu").style.width = "0%";
+}
+
+$(function(){  // FUNCTION FOR FADE IN $(document).ready shorthand
+    $('#title').fadeIn('slow');
+  });
+  
+$(document).ready(function() {
+      
+      /* Every time the window is scrolled ... */
+      $(window).scroll( function(){
+      
+          /* Check the location of each desired element */
+          $('.reveal').each( function(i){
+              
+              var bottom_of_object = $(this).position().top + $(this).outerHeight();
+              var bottom_of_window = $(window).scrollTop() + $(window).height();
+              
+              /* If the object is completely visible in the window, fade it it */
+              if( bottom_of_window > bottom_of_object ){
+                  
+                  $(this).animate({'opacity':'1'},1500);
+                      
+              }
+              
+          }); 
+      
+      });
+      
+});
 
 //For shop.php page
 
@@ -50,6 +92,15 @@ function reduceArrays(array1, array2){
 
 function checkout(){
     window.location.href = "shoppingcart.php";
+}
+
+function dropdown(id){
+    if(document.getElementById(id).style.display == "block"){
+        document.getElementById(id).style.display = "none";
+        
+    }else{
+        document.getElementById(id).style.display = "block";
+    }
 }
 
 //For shoppingcart.php page

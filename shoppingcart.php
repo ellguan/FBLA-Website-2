@@ -46,9 +46,14 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
         <style>
             body{
                 color: white;
+                background-image:url("pictures/checkoutbg.jpg");
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                background-size: cover;
             }
             #nothingincart, #checkout{
                 display:none;
@@ -57,41 +62,66 @@
         </style>
     </head>
     <body>
-        <table>
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Image</th>
-                    <th>Count</th>
-                    <th>Price</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                $i = 0;
-                if(!empty($row))
-                    
-                    foreach($row as $rows)
-                        
-                    { 
-                ?>
-                    <tr id="<?php echo $rows['id']?>">
-                        <td><?php echo $rows['fullname'] ?></td>
-                        <td><img src = "<?php echo $rows['image']; ?>" ></td>
-                        <td><?php echo $_SESSION['cartamount'][$i]; ?></td>
-                        <td>$<?php echo $rows['price']*$_SESSION['cartamount'][$i]; ?></td>
-                        <td><button onclick="deleteProduct('<?php echo $rows['id']?>', <?php echo $rows['price']*$_SESSION['cartamount'][$i]; ?>)">Delete</button></td>
+        <div id="menu" onclick="menuclose()">
+            <div id="menuitems">
+                <h1 onclick="menuclose()">&times;</h1>
+                <!--logo here-->
+                <!--line here-->
+                <h1 onclick="goHome()">Home</h1>
+                <h1 onclick="goRegister()">Membership</h1>
+                <h1 onclick="goShop()">Products</h1>
+            </div>
+        </div>
+
+        <span> 
+            <button id="menubutton" onclick="menuopen()">☰</button> 
+        </span>
+
+        <div id="header">
+            <img src="pictures/checkout.png">
+            <h1 onclick="goHome()">Be HAAPI, Eat Noodles</h1>
+        </div>
+
+        <br>
+        <br>
+
+        <div class="content">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Image</th>
+                        <th>Count</th>
+                        <th>Price</th>
                     </tr>
-                <?php 
-                    $i += 1;
-                }else{
-                    echo "Nothing in your shopping cart yet!";
-                }
-                ?>
-            </tbody>
-        </table>
-        <p id="nothingincart">Nothing in your shopping cart yet!</p>
-        <p id="total">Total: $<?php if (isset($total)){echo $total;}else{echo 0;} ?></p> <!--change so it only shows up when cart is full-->
+                </thead>
+                <tbody>
+                    <?php
+                    $i = 0;
+                    if(!empty($row))
+                        
+                        foreach($row as $rows)
+                            
+                        { 
+                    ?>
+                        <tr id="<?php echo $rows['id']?>">
+                            <td><img src = "<?php echo $rows['image']; ?>" ></td>
+                            <td><h1><?php echo $rows['fullname'] ?></h1></td>
+                            <td><h1><?php echo $_SESSION['cartamount'][$i]; ?></h1></td>
+                            <td><h1>$<?php echo $rows['price']*$_SESSION['cartamount'][$i]; ?></h1></td>
+                            <td><button onclick="deleteProduct('<?php echo $rows['id']?>', <?php echo $rows['price']*$_SESSION['cartamount'][$i]; ?>)"><i class="fa-solid fa-trash-can"></i></button></td>
+                        </tr>
+                    <?php 
+                        $i += 1;
+                    }else{
+                        echo "Nothing in your shopping cart yet!";
+                    }
+                    ?>
+                </tbody>
+            </table>
+            <p id="nothingincart">Nothing in your shopping cart yet!</p>
+            <p id="total">Total: $<?php if (isset($total)){echo $total;}else{echo 0;} ?></p> <!--change so it only shows up when cart is full-->
+        </div>
 
         <button id="checkout" onclick="proceedToCheckout()">Checkout!</button>
         <button id="addmore" onclick="goShop()">Add more products!</button>

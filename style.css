@@ -16,7 +16,7 @@ img{
     height:100%;
 }
 
-#menubutton{ /*change*/
+#menubutton{
     font-size:200%;
     border:none;
 }
@@ -352,7 +352,7 @@ input[type=submit]:hover{
 }
 
 #header img{
-    width:40%;
+    width:50%;
     height:20%;
 }
 #header{
@@ -397,6 +397,69 @@ input[type=submit]:hover{
 .noodlepic h1{
     font-size:150%;
 }
+.noodlesoverlay{
+    position:fixed;
+    width:0%;
+    height:80%;
+    top: 0;
+    left: 0;
+    right:0;
+    bottom:0;
+    z-index:1;
+    background-color: rgba(167, 11, 11, .5);
+    overflow-x:hidden;
+    transition:.5s;
+    display:flex;
+    top: 50%;
+    left: 50%;
+    color: white;
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+}
+.noodlesoverlay h2{
+    cursor:auto;
+}
+.noodleoverlay1, .noodleoverlay2{
+    display:block;
+    color: white;
+    opacity:1;
+    background-color:#A70B0B;
+    padding:5%;
+    width:75%;
+    height:75%;
+    border:#F1BA0A 5px solid;
+}
+.closenoodleoverlay{
+    cursor:pointer;
+    transition:.5s ease;
+}
+.closenoodleoverlay:hover{
+    color:#F1BA0A;
+}
+.noodlesoverlay img{
+    width:90%;
+    height:90%;
+    object-fit:contain;
+    transition: .5s ease;
+}
+.noodlesoverlay img:hover{
+    width:110%;
+    height:110%;
+    object-fit:cover;
+}
+
+#searchbar{
+    display:flex;
+    font-size:150%;
+}
+#searchbar input, #searchbar button{
+    display:block;
+    transition: .5s ease;
+}
+#searchbar button:hover{
+    border-color:#A70B0B;
+    color:#A70B0B;
+}
 #filters{
     display:block;
     width:15%;
@@ -409,12 +472,22 @@ input[type=submit]:hover{
 #filters h2:hover{
     color:#A70B0B;
 }
-#filters input[type="text"]{
-    height:150%;
-}
 #filters button{
     color:white;
     border-color:white;
+}
+#submitfilters input, #submitfilters button, #goback{
+    border: white 5px solid;
+    transition: .5s ease;
+    background-color:transparent;
+    color:white;
+    padding:2%;
+    font-size:100%;
+    width:100%;
+}
+#submitfilters input:hover, #submitfilters button:hover, #goback:hover{
+    border-color:#A70B0B;
+    color:#A70B0B;
 }
 .dropdown{
     display:none;
@@ -424,6 +497,23 @@ input[type=submit]:hover{
     left: 50%;                        /* horizontal alignment */
     top: 50%;                       /* vertical alignment */
     text-align:center;
+}
+
+/*Styling for shoppingcart.php*/
+.content{
+    display:block;
+    width:80%;
+    margin:auto;
+    background-color:#A70B0B;
+    padding:2%;
+}
+.content tr{
+    border-bottom:5px solid #F1BA0A; 
+    padding:2%
+}
+.content td{
+    
+    padding:2%;
 }
 
 /*Styling for computer-specific displays*/

@@ -9,7 +9,7 @@
         $email       = $_POST['email'];
         $secretword1  = ($_POST['secretword']);
         
-        $sql = "INSERT INTO test (firstname, lastname, email, secretword ) values(?,?,?,?)";
+        $sql = "INSERT INTO login (firstname, lastname, email, secretword ) values(?,?,?,?)";
         $stmtinsert = $conn->prepare($sql);
         $result = $stmtinsert->execute([$firstname, $lastname, $email, $secretword1]);
         if($result){

@@ -52,36 +52,59 @@ $(document).ready(function() {
 
 //For shop.php page
 
-let btns = document.querySelectorAll(".addtocart");
+// let btns = document.querySelectorAll(".addtocart");
 
-function checkoutButtons(){
-    for (i of btns) {
-        i.addEventListener('click', function() {
-            let number = prompt("How many?", "1");
-            if (number!= null){
-                number = Number(number);
+// function checkoutButtons(){
+//     for (i of btns) {
+//         i.addEventListener('click', function() {
+//             let number = prompt("How many?", "1");
+//             if (number!= null){
+//                 number = Number(number);
 
-                let id = this.id;
-                console.log(id);
+//                 let id = this.id;
+//                 console.log(id);
         
-                $.post('cartprocess.php', {
-                    id: id, number: number
-                }, (response) => {
-                    // response from PHP back-end
-                    console.log(response);
-                })
+//                 $.post('cartprocess.php', {
+//                     id: id, number: number
+//                 }, (response) => {
+//                     response from PHP back-end
+//                     console.log(response);
+//                 })
         
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'Added to cart!',
-                    showConfirmButton: false,
-                    timer: 1500
-                })
-            }
+//                 Swal.fire({
+//                     position: 'top-end',
+//                     icon: 'success',
+//                     title: 'Added to cart!',
+//                     showConfirmButton: false,
+//                     timer: 1500
+//                 })
+//             }
                 
             
-        });
+//         });
+//     }
+// }
+
+function addtocart(id){
+    let number = prompt("How many?", "1");
+    console.log(id);
+    if (number!= null){
+        number = Number(number);
+
+        $.post('cartprocess.php', {
+            id: id, number: number
+        }, (response) => {
+            // response from PHP back-end
+            console.log(response);
+        })
+
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Added to cart!',
+            showConfirmButton: false,
+            timer: 1500
+        })
     }
 }
 
@@ -103,6 +126,14 @@ function dropdown(id){
     }
 }
 
+function itemopen(id){
+    document.getElementById(id).style.width = "80%";
+}
+
+function itemclose(id){
+    document.getElementById(id).style.width = "0%";
+}
+
 //For shoppingcart.php page
 
 function deleteProduct(id, price){
@@ -121,4 +152,4 @@ function deleteProduct(id, price){
       })
 }
 
-checkoutButtons();
+// checkoutButtons();

@@ -35,7 +35,7 @@
     <body>
         <div id="menu" onclick="menuclose()">
             <div id="menuitems">
-                <h1 onclick="menuclose()">&times;</a>
+                <h1 onclick="menuclose()">&times;</h1>
                 <!--logo here-->
                 <!--line here-->
                 <h1 onclick="goHome()">Home</h1>
@@ -192,11 +192,11 @@
         </script>
     </body>
     <?php
-        //$sql = "INSERT INTO noodles (id, image, fullname, price ) values('Masterkong', 'pictures/noodles/MasterKong.jpg', 'Master Kong Hot&SpicyBeef', '3'), ('BaiJia', 'pictures/noodles/BaiJia.jpg', 'Instant Sichuan Broad Noodles', '3'), ('SichuanBaijiaChongqing', 'pictures/noodles/SichuanBaijiaChongqing.jpg', 'Sichuan Baijia Chongqing Burning Dry Noodles', '3'), ('UFO', 'pictures/noodles/UFO.jpg', 'UFO Yakisoba noodles', '3'), ('Maruchan', 'pictures/noodles/Maruchan.jpg', 'Maruchan Tanuki Soba', '3'), ('AceCook', 'pictures/noodles/AceCook.jpg', 'AceCook Instant Harusame Soup, Szechuan Sesame Hot Flavor', '3'), ('KoyoWakame', 'pictures/noodles/KoyoWakame.jpg', 'Koyo Wakame Seaweed Ramen', '3'), ('NissinCupNoodles', 'pictures/noodles/NissinCupNoodles.jpg', 'Nissin Cup Noodles Mongolia Miso Tanmen Nakamoto Ramen', '3'), ('Buldak', 'pictures/noodles/Buldak.jpg', 'Samyang 2X Buldak Cicken Stir Fried Ramen', '3'), ('ottogi', 'pictures/noodles/ottogi.jpg', 'OTTOGI Cheese Ramen', '3'), ('Paldo', 'pictures/noodles/Paldo.jpg', 'Paldo Fun & Yum Ilpoom Jjajangmen Chajang Noodle, Pack of 4, Traditional Brothless Chajang Ramen', '3')";
-        //if ($conn->query($sql) === TRUE) {
-            //echo "New record created successfully";
-          //} else {
-            //echo "Error: " . $sql . "<br>" . $conn->error;
-          //}
+        // $sql = "INSERT INTO noodles (id, image, fullname, price ) values('MaMaThai', 'pictures/noodles/MaMaThai.png', 'Authentic Thai-Style Pork Noodles - Instant Noodles', '3'), ('MaMaPad', 'pictures/noodles/MaMaPad.png', 'Pad Thai Instant Spicy Noodles w/ Delicious Thai Flavors, Hot & Spicy Noodles w/ Pad Thai Soup Base', '3'), ('MaMaKhao', 'pictures/noodles/MaMaKhao.png', 'MAMA Instant Noodles Chicken Khao Soi Flavour', '3'), ('MaMaStir', 'pictures/noodles/MaMaStir.png', 'MAMA Oriental Kitchen Stir Fried Salted Egg', '3'), ('IndomieOnion', 'pictures/noodles/IndomieOnion.png', 'Indomie Instant Noodles Onion Flavor', '3'), ('MaMaMoo', 'pictures/noodles/MaMaMoo.png', 'Instant Noodles Moo Nam Tok', '3'), ('cf', 'pictures/noodles/cf.png', 'Chinese Food Convenient Delicious Instant Noodles Cup Seasoning Rice Vermicelli', '3'), ('HaoHao', 'pictures/noodles/HaoHao.png', 'Hao Hao Hot Sour Shrimp Flavor Instant Noodles', '3'), ('MamaPho', 'pictures/noodles/MamaPho.png', 'Mama Pho Bo Instant Beef Soup Bowl Noodle In Vietnamese Style', '3'), ('MamaPhoGa', 'pictures/noodles/MamaPhoGa.png', 'MAMA Pho Ga Instant Chicken Soup Bowl', '3'), ('ViHuong', 'pictures/noodles/ViHuong.png', 'Vi Huong Instant Noodles Authentic Vietnamese Instant Ramen Soup Shrimp', '3'), ('Vifon', 'pictures/noodles/Vifon.png', 'Vifon Mi Ga Instant Noodles Chicken Flavor (Vietnam)', '3'), ('Quickchow', 'pictures/noodles/Quickchow.png', 'Quickchow Pancit Canton Tokyo-Mansi', '3')";
+        // if ($conn->query($sql) === TRUE) {
+        //     echo "New record created successfully";
+        //   } else {
+        //     echo "Error: " . $sql . "<br>" . $conn->error;
+        //   }
     ?>
 </html>

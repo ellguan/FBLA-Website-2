@@ -5,11 +5,10 @@
     //selecting values from the table and display them
     $sql = " SELECT * FROM noodles";
     $result = $conn->query($sql);
-    $conn->close();
-
-    while($rows=$result->fetch_assoc()){
+    
+    // while($rows=$result->fetch_assoc()){
         
-    }
+    // }
 ?>
 
 <!DOCTYPE html>
@@ -47,7 +46,7 @@
     <body>
         <div id="menu" onclick="menuclose()">
             <div id="menuitems">
-                <h1 onclick="menuclose()">&times;</a>
+                <h1 onclick="menuclose()">&times;</h1>
                 <!--logo here-->
                 <!--line here-->
                 <h1 onclick="goHome()">Home</h1>
@@ -72,30 +71,43 @@
                     while($rows=$result->fetch_assoc())
                     {
                 ?>
-                    <div class="noodlepic">
+                    <div class="noodlepic addtocart <?php echo $rows['id'];?>" onclick="itemopen('<?php echo (string)$rows['noodleid'];?>')">
                         <img src="<?php echo $rows['image'];?>" class="addtocart "><br>
                         <h1><?php echo $rows['fullname']?></h1>
                         <h2>$<?php echo $rows['price'];?></h2>
-                        <button class="addtocart shin korea eastasia spicy ramen" id="<?php echo $rows['id'];?>">Add to cart!</button>
+                        <button>View product!</button>
+                    </div>
+                    <div class="noodlesoverlay" id="<?php echo (string)$rows['noodleid'];?>">
+                        <div class="noodleoverlay1">
+                            <img src="<?php echo $rows['image'];?>"><br>
+                        </div>
+                        <div class="noodleoverlay2">
+                            <h1 onclick="itemclose('<?php echo (string)$rows['noodleid'];?>')" class="closenoodleoverlay">&times;</h1>
+                            <h1><?php echo $rows['fullname']?></h1>
+                            <h2>Filters:</h2>
+                            <h2>$<?php echo $rows['price'];?></h2>
+                            <button class="shin korea eastasia spicy ramen" id="<?php echo $rows['id'];?>" onclick="addtocart('<?php echo $rows['id'];?>')">Add to cart!</button>
+                        </div>
                     </div>
                     <br>
                 <?php
                     }
                 ?>
-                <img src="pictures/noodles/shin.jpg" class="addtocart shin southkorea eastasia spicy ramen" alt="Shin Ramen">
+                <!-- <img src="pictures/noodles/shin.jpg" class="addtocart shin southkorea eastasia spicy ramen" alt="Shin Ramen">
                 <button class="addtocart shin korea eastasia spicy ramen" id="shin">Add to cart!</button>
                 <img src="pictures/noodles/maggi.jpg" class="addtocart india southasia spicy maggi" alt="Maggi">
                 <button class="addtocart india southasia spicy maggi" id="maggi">Add to cart!</button>
                 <img src="pictures/noodles/jinmailang.jpg" class="addtocart jinmailang china eastasia nonspicy ramen" alt="Jin Mai Lang">
-                <button class="addtocart jinmailang china eastasia nonspicy ramen" id="jinmailang">Add to cart!</button>
+                <button class="addtocart jinmailang china eastasia nonspicy ramen" id="jinmailang">Add to cart!</button> -->
             </div>
             <div id="filters">
                 <h1>SEARCH:</h1>
                 <div id="searchquery">
                     <form action="<?php $_SERVER['PHP_SELF'] ?>" method="GET">
-                        <br>
-                        <input type="text" name="query">
-                        <button type="submit"><i class="fa fa-search"></i></button>
+                        <div id="searchbar">
+                            <input type="text" name="query">
+                            <button type="submit"><i class="fa fa-search"></i></button>
+                        </div>
                     </form>
                     <button type="button" id="goback" onclick="goShop()">Go back!</button>
                 </div>
@@ -175,8 +187,10 @@
                         <label for="cellophane">Cellophane</label>
                     </div>
                     <br>
-                    <input type="submit" value="Apply filters!">
-                    <button type="button" onclick="goShop()">Clear all filters!</button>   
+                    <div id="submitfilters">
+                        <input type="submit" value="Apply filters!"><br>
+                        <button type="button" onclick="goShop()">Clear all filters!</button>   
+                    </div>
                 </form>   
             </div>
         </div>
@@ -190,13 +204,27 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="script.js"></script>
     
-    <script type="text/javascript">
-        function dropdown(id){
-            if(document.getElementById(id).style.display == "block"){
-                document.getElementById(id).style.display = "none";
-                
-            }else{
-                document.getElementById(id).style.display = "block";
+    <script type="text/javascript"> //remember to delete
+        function addtocart(id){
+            let number = prompt("How many?", "1");
+            console.log(id);
+            if (number!= null){
+                number = Number(number);
+
+                $.post('cartprocess.php', {
+                    id: id, number: number
+                }, (response) => {
+                    // response from PHP back-end
+                    console.log(response);
+                })
+
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Added to cart!',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
             }
         }
     </script>

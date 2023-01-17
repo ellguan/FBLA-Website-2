@@ -8,7 +8,7 @@
     $username = $_POST['username'];
     $secretword = $_POST['secretword'];
 
-    $sql = "SELECT * FROM test WHERE email = ? AND secretword = ? LIMIT 1";
+    $sql = "SELECT * FROM login WHERE email = ? AND secretword = ? LIMIT 1";
     $stmtselect = $conn->prepare($sql);
     $result = $stmtselect->execute([$username, $secretword]);
 

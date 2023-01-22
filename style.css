@@ -11,6 +11,10 @@ body{
     opacity:0;
 } */
 
+span{
+    display:flex;
+}
+
 img{
     width:100%;
     height:100%;
@@ -90,7 +94,7 @@ button:hover{
     background-color:#A70B0B;
     padding:10%;
     font-size:150%;
-    min-height: 2000px;
+    min-height: 1300px;
     color:white;
 }
 
@@ -148,8 +152,8 @@ button:hover{
 }
 
 #spicelevel img{
-    height:20%;
-    width:20%;
+    height:17%;
+    width:17%;
     cursor:pointer;
     display:block;
 }
@@ -276,6 +280,14 @@ button:hover{
     padding:10%;
     background-attachment: fixed;
 }
+#parallax2 button{
+    border-color: white;
+    color:white;
+}
+#parallax2 button:hover{
+    border-color:#A70B0B;
+    color:#A70B0B;
+}
 
 #form{
     background-color:#F1BA0A;
@@ -330,9 +342,9 @@ input[type=submit]:hover{
     color:#A70B0B;
 }
 
-#slideshow{
+/* #slideshow{
     max-height: 100px;
-}
+} */
 
 /*Styling for Shop.php*/
 
@@ -385,10 +397,18 @@ input[type=submit]:hover{
     text-align:center;
     cursor:pointer;
     transition: .5s ease;
-    width:30%;
+    width:80%;
+    display:flex;
+    margin:auto;
+    align-items: center;
+    justify-content: center;
+}
+.noodlepic div{
+    flex-basis:50%;
 }
 .noodlepic img{
-    width:90%;
+    width:80%;
+    height:80%;
     object-fit:cover;
 }
 .noodlepic:hover{
@@ -498,6 +518,41 @@ input[type=submit]:hover{
     top: 50%;                       /* vertical alignment */
     text-align:center;
 }
+input[type=number]{
+    width:12%;
+    padding:1%;
+    font-family: 'Jost', sans-serif;
+    font-size:100%;
+    background-color:white;
+    transition: .5s ease;
+    border: 2px solid white;
+    outline:none;
+    box-sizing:border-box;
+    
+}
+input[type=number]:focus {
+    border: 2px solid #F1BA0A;
+}
+/*change this styling*/
+.pagination{
+    display:flex;
+    justify-content: center;
+}
+.pagination a {
+    color: white;
+    padding: 2%;
+    text-decoration: none;
+    transition: background-color .5s;
+  }
+  
+.pagination a.active {
+    background-color: #F1BA0A;
+    color: white;
+  }
+  
+.pagination a:hover:not(.active) {
+    background-color: #F1BA0A;
+}
 
 /*Styling for shoppingcart.php*/
 .content{
@@ -511,9 +566,29 @@ input[type=submit]:hover{
     border-bottom:5px solid #F1BA0A; 
     padding:2%
 }
-.content td{
-    
+.content {
     padding:2%;
+}
+.content hr{
+    width:95%;
+    border: #F1BA0A solid 5px;
+}
+.content button{
+    font-size:150%;
+    color:white;
+    border: none;
+    transition: .5s ease;
+}
+.content button:hover{
+    color:#F1BA0A;
+}
+.content table{
+    width:95%;
+    font-size:150%;
+}
+#pay{
+    position:relative;
+    margin:auto;
 }
 
 /*Styling for computer-specific displays*/

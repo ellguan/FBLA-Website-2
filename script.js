@@ -2,11 +2,14 @@
 function goShop(){
     window.location.href = "shop.php";
 }
-function goRegister(){
-    window.location.href = "registration.php";
+function goCart(){
+    window.location.href = "shoppingcart.php";
 }
 function goHome(){
     window.location.href = "index.php";
+}
+function goCredits(){
+    window.location.href = "credits.php"
 }
 
 //For index.php page
@@ -20,6 +23,22 @@ function menuopen(){
 
 function menuclose(){
     document.getElementById("menu").style.width = "0%";
+}
+
+function gotoimage(id){
+    window.location.href = "shop.php";
+    window.onload = itemopen(id);
+    console.log(id);
+}
+
+function signup(){
+    Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'You have signed up for the mailing list!',
+        showConfirmButton: false,
+        timer: 1500
+    })
 }
 
 $(function(){  // FUNCTION FOR FADE IN $(document).ready shorthand
@@ -86,8 +105,8 @@ $(document).ready(function() {
 // }
 
 function addtocart(id){
-    let number = prompt("How many?", "1");
-    console.log(id);
+    let number = document.getElementById(id+'amount').value;
+    console.log(id, number);
     if (number!= null){
         number = Number(number);
 
@@ -153,3 +172,18 @@ function deleteProduct(id, price){
 }
 
 // checkoutButtons();
+
+//For checkout.php page
+function pay(){
+    Swal.fire({
+        title: 'Your order has been confirmed!',
+        text: "You will receive a receipt in your email and be redirected to the home page shortly.",
+        icon: 'success',
+        showCancelButton: false,
+        confirmButtonText: 'Okay!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = "index.php";
+        }
+      })
+}

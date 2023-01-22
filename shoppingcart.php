@@ -50,12 +50,12 @@
         <style>
             body{
                 color: white;
-                background-image:url("pictures/checkoutbg.jpg");
+                background-image:url("pictures/cartbg.jpg");
                 background-repeat: no-repeat;
                 background-attachment: fixed;
                 background-size: cover;
             }
-            #nothingincart, #checkout{
+            #nothingincart, #pay{
                 display:none;
             }
             
@@ -63,13 +63,14 @@
     </head>
     <body>
         <div id="menu" onclick="menuclose()">
-            <div id="menuitems">
+        <div id="menuitems">
                 <h1 onclick="menuclose()">&times;</h1>
                 <!--logo here-->
                 <!--line here-->
                 <h1 onclick="goHome()">Home</h1>
-                <h1 onclick="goRegister()">Membership</h1>
                 <h1 onclick="goShop()">Products</h1>
+                <h1 onclick="goCart()">Shopping Cart</h1>
+                <h1 onclick="goCredits()">Credits</h1>
             </div>
         </div>
 
@@ -78,7 +79,7 @@
         </span>
 
         <div id="header">
-            <img src="pictures/checkout.png">
+            <img src="pictures/cart.png">
             <h1 onclick="goHome()">Be HAAPI, Eat Noodles</h1>
         </div>
 
@@ -89,10 +90,9 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Image</th>
-                        <th>Count</th>
-                        <th>Price</th>
+                        <th><h1>Name</h1></th>
+                        <th><h1>Image</h1></th>
+                        <th><h1>Price</h1></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -106,9 +106,8 @@
                     ?>
                         <tr id="<?php echo $rows['id']?>">
                             <td><img src = "<?php echo $rows['image']; ?>" ></td>
-                            <td><h1><?php echo $rows['fullname'] ?></h1></td>
-                            <td><h1><?php echo $_SESSION['cartamount'][$i]; ?></h1></td>
-                            <td><h1>$<?php echo $rows['price']*$_SESSION['cartamount'][$i]; ?></h1></td>
+                            <td><?php echo $rows['fullname'] ?></td>
+                            <td>$<?php echo $rows['price']*$_SESSION['cartamount'][$i]; ?> (<?php echo $_SESSION['cartamount'][$i]; ?> items)</td>
                             <td><button onclick="deleteProduct('<?php echo $rows['id']?>', <?php echo $rows['price']*$_SESSION['cartamount'][$i]; ?>)"><i class="fa-solid fa-trash-can"></i></button></td>
                         </tr>
                     <?php 
@@ -119,26 +118,29 @@
                     ?>
                 </tbody>
             </table>
-            <p id="nothingincart">Nothing in your shopping cart yet!</p>
-            <p id="total">Total: $<?php if (isset($total)){echo $total;}else{echo 0;} ?></p> <!--change so it only shows up when cart is full-->
+            <h1 id="nothingincart">Nothing in your shopping cart yet!</h1>
+            <h1 id="total">Total: $<?php if (isset($total)){echo $total;}else{echo 0;} ?></h1> <!--change so it only shows up when cart is full-->
         </div>
-
-        <button id="checkout" onclick="proceedToCheckout()">Checkout!</button>
-        <button id="addmore" onclick="goShop()">Add more products!</button>
+        <br>
+        <div id="checkout">
+            <button id="addmore" onclick="goShop()">Add more products!</button>
+            <button id="pay" onclick="proceedToCheckout()">Continue to checkout!</button>
+        </div>
+        <br>
+        <div id="footer">&copy; Be HAAPI, Eat Noodles 2022-<?php echo date("Y");?></div>
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
         <script src="script.js"></script>
         <script>        
             var total = Number(<?php echo $total ?>);
         
-            function proceedToCheckout(){ //make sure to link this to checkout page
-                <?php //$_SESSION['cart'] = array();
-                //echo implode("", $_SESSION['cart'])?>
+            function proceedToCheckout(){ 
+                window.location.href = "checkout.php";
             }
 
             function displayCheckout(){
                 if (total > 0){
-                    document.getElementById('checkout').style.display = "block";
+                    document.getElementById('pay').style.display = "block";
                 }
             }
 
@@ -149,7 +151,6 @@
     <!--PHP code for deleting products in cart-->
     <?php
         if (isset($_POST['id'])){
-            echo "hello";
             $deletedProduct = $_POST['id'];
             $productIndex = array_search($deletedProduct, $_SESSION["cart"]);
             unset($_SESSION["cart"][$productIndex]);

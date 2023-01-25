@@ -1,4 +1,7 @@
 <?php
+    //DEAD DOC, NO NOODLES HERE
+
+
     session_start();
     require_once('mysqlconfig.php');
 
@@ -22,22 +25,6 @@
             $noodlecounter+=1;
         }
     }
-
-    //separating this page's noodles into rows
-    // $noodlecounter = 1;
-    // $temparr = array();
-    // $noodles = array();
-    // for ($x = 0; $x < 15; $x++){
-    //     if(array_key_exists($x, $_SESSION["shop1"])){
-    //         array_push($temparr, $_SESSION["shop1"][$x]);
-    //     }
-    //     if($noodlecounter == 3){
-    //         array_push($noodles, $temparr);
-    //         $temparr = array();
-    //         $noodlecounter = 1;
-    //     }
-    //     $noodlecounter +=1;
-    // }
 ?>
 
 <!DOCTYPE html>
@@ -107,7 +94,7 @@
         <div id="sidebyside">
             <div id="noodlepics">
                 <?php
-                    foreach($_SESSION["shop1"] as $rows){
+                    foreach($_SESSION["shop10"] as $rows){
                 ?>
                     <div class="noodlepic addtocart <?php echo $rows['id'];?> <?php echo $rows['filters'];?>" onclick="itemopen('<?php echo (string)$rows['noodleid'];?>')">
                         <div>
@@ -134,18 +121,9 @@
                     </div>
                 <?php
                     }
-                ?>
-                <!-- <img src="pictures/noodles/shin.jpg" class="addtocart shin southkorea eastasia spicy ramen" alt="Shin Ramen">
-                <button class="addtocart shin korea eastasia spicy ramen" id="shin">Add to cart!</button>
-                <img src="pictures/noodles/maggi.jpg" class="addtocart india southasia spicy maggi" alt="Maggi">
-                <button class="addtocart india southasia spicy maggi" id="maggi">Add to cart!</button>
-                <img src="pictures/noodles/jinmailang.jpg" class="addtocart jinmailang china eastasia nonspicy ramen" alt="Jin Mai Lang">
-                <button class="addtocart jinmailang china eastasia nonspicy ramen" id="jinmailang">Add to cart!</button> -->
-                
-                <!--the rest of the noodles-->
-                <?php
+
                     foreach($_SESSION["allnoodles"] as $rows){
-                        if(!(in_array($rows, $_SESSION["shop1"]))){
+                        if(!(in_array($rows, $_SESSION["shop19"]))){
                 ?>
                     <div class="all noodlepic addtocart <?php echo $rows['id'];?> <?php echo $rows['filters'];?>" onclick="itemopen('<?php echo (string)$rows['noodleid'];?>')" <?php echo $rows['filters'];?>>
                         <div>
@@ -178,8 +156,8 @@
                 <br>
 
                 <div class="pagination" id="pagination">
-                    <a href="">&laquo;</a>
-                    <a class="active" href="shop.php">1</a>
+                    <a href="shop9.php">&laquo;</a>
+                    <a href="shop.php">1</a>
                     <a href="shop2.php">2</a>
                     <a href="shop3.php">3</a>
                     <a href="shop4.php">4</a>
@@ -187,7 +165,9 @@
                     <a href="shop6.php">6</a>
                     <a href="shop7.php">7</a>
                     <a href="shop8.php">8</a>
-                    <a href="shop2.php">&raquo;</a>
+                    <a href="shop9.php">9</a>
+                    <a class="active" href="shop10.php">10</a>
+                    <a>&raquo;</a>
                 </div>
 
                 <h1 id="noresults">No results :(</h1>
@@ -324,21 +304,6 @@
                         <input type="checkbox" value="sweet" name="filters[]" id="sweet">
                         <label for="sweet">Sweet</label>
                     </div>
-                    <!-- <h2 onclick="dropdown('noodledropdown')">‣ Noodle Type?</h2>
-                    <div id="noodledropdown" class="dropdown">
-                        <input type="checkbox" value="ramen" name="filters[]" id="ramen">
-                        <label for="ramen">Ramen</label><br>
-                        <input type="checkbox" value="maggi" name="filters[]" id="maggi">
-                        <label for="maggi">Maggi</label><br>
-                        <input type="checkbox" value="chowmein" name="filters[]" id="chowmein">
-                        <label for="chowmein">Chow Mein</label><br>
-                        <input type="checkbox" value="cupnoodles" name="filters[]" id="cupnoodles">
-                        <label for="cupnoodles">Cup Noodles</label><br>
-                        <input type="checkbox" value="noodlesoup" name="filters[]" id="noodlesoup">
-                        <label for="noodlesoup">Noodle Soup</label><br>
-                        <input type="checkbox" value="cellophane" name="filters[]" id="cellophane">
-                        <label for="cellophane">Cellophane</label>
-                    </div> -->
                     <br>
                     <div id="submitfilters">
                         <input type="submit" value="Apply filters!"><br>

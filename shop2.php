@@ -57,6 +57,12 @@
             .all{
                 display:none;
             }
+            #pagination{
+                display:flex;
+            }
+            #noresults{
+                display:none;
+            }
         </style>
     </head>
     <body>
@@ -66,8 +72,9 @@
                 <!--logo here-->
                 <!--line here-->
                 <h1 onclick="goHome()">Home</h1>
-                <h1 onclick="goRegister()">Membership</h1>
                 <h1 onclick="goShop()">Products</h1>
+                <h1 onclick="goCart()">Shopping Cart</h1>
+                <h1 onclick="goCredits()">Credits</h1>
             </div>
         </div>
 
@@ -86,9 +93,9 @@
                 <?php
                     foreach($_SESSION["shop2"] as $rows){
                 ?>
-                    <div class="noodlepic addtocart <?php echo $rows['id'];?>" onclick="itemopen('<?php echo (string)$rows['noodleid'];?>')">
+                    <div class="noodlepic addtocart <?php echo $rows['id'];?> <?php echo $rows['filters'];?>" onclick="itemopen('<?php echo (string)$rows['noodleid'];?>')">
                         <div>
-                        <img src="<?php echo $rows['image'];?>" class="addtocart "><br>
+                        <img src="<?php echo $rows['image'];?>"><br>
                         </div>
                         <div>
                         <h1><?php echo $rows['fullname']?></h1>
@@ -103,24 +110,30 @@
                         <div class="noodleoverlay2">
                             <h1 onclick="itemclose('<?php echo (string)$rows['noodleid'];?>')" class="closenoodleoverlay">&times;</h1>
                             <h1><?php echo $rows['fullname']?></h1>
-                            <h2>Filters:</h2>
+                            <h2>Filters:</h2><p><?php echo str_replace("addtocart","", $rows['filters']);?></p>
                             <h2>$<?php echo $rows['price'];?></h2>
-                            <button class="shin korea eastasia spicy ramen" id="<?php echo $rows['id'];?>" onclick="addtocart('<?php echo $rows['id'];?>')">Add to cart!</button>
+                            <button id="<?php echo $rows['id'];?>" onclick="addtocart('<?php echo $rows['id'];?>')">Add to cart!</button>
                             <input type="number" id="<?php echo $rows['id'].'amount';?>" name="amount" step="1" value="1">
                         </div>
                     </div>
                 <?php
                     }
                 ?>
+                <!-- <img src="pictures/noodles/shin.jpg" class="addtocart shin southkorea eastasia spicy ramen" alt="Shin Ramen">
+                <button class="addtocart shin korea eastasia spicy ramen" id="shin">Add to cart!</button>
+                <img src="pictures/noodles/maggi.jpg" class="addtocart india southasia spicy maggi" alt="Maggi">
+                <button class="addtocart india southasia spicy maggi" id="maggi">Add to cart!</button>
+                <img src="pictures/noodles/jinmailang.jpg" class="addtocart jinmailang china eastasia nonspicy ramen" alt="Jin Mai Lang">
+                <button class="addtocart jinmailang china eastasia nonspicy ramen" id="jinmailang">Add to cart!</button> -->
                 
                 <!--the rest of the noodles-->
                 <?php
                     foreach($_SESSION["allnoodles"] as $rows){
                         if(!(in_array($rows, $_SESSION["shop2"]))){
                 ?>
-                    <div class="all noodlepic addtocart <?php echo $rows['id'];?>" onclick="itemopen('<?php echo (string)$rows['noodleid'];?>')">
+                    <div class="all noodlepic addtocart <?php echo $rows['id'];?> <?php echo $rows['filters'];?>" onclick="itemopen('<?php echo (string)$rows['noodleid'];?>')" <?php echo $rows['filters'];?>>
                         <div>
-                        <img src="<?php echo $rows['image'];?>" class="addtocart "><br>
+                        <img src="<?php echo $rows['image'];?>"><br>
                         </div>
                         <div>
                         <h1><?php echo $rows['fullname']?></h1>
@@ -135,9 +148,9 @@
                         <div class="noodleoverlay2">
                             <h1 onclick="itemclose('<?php echo (string)$rows['noodleid'];?>')" class="closenoodleoverlay">&times;</h1>
                             <h1><?php echo $rows['fullname']?></h1>
-                            <h2>Filters:</h2>
+                            <h2>Filters:</h2><p><?php echo str_replace("addtocart","", $rows['filters']);?></p>
                             <h2>$<?php echo $rows['price'];?></h2>
-                            <button class="shin korea eastasia spicy ramen" id="<?php echo $rows['id'];?>" onclick="addtocart('<?php echo $rows['id'];?>')">Add to cart!</button>
+                            <button id="<?php echo $rows['id'];?>" onclick="addtocart('<?php echo $rows['id'];?>')">Add to cart!</button>
                             <input type="number" id="<?php echo $rows['id'].'amount';?>" name="amount" step="1" value="1">
                         </div>
                     </div>
@@ -148,7 +161,7 @@
 
                 <br>
 
-                <div class="pagination">
+                <div class="pagination" id="pagination">
                     <a href="shop.php">&laquo;</a>
                     <a href="shop.php">1</a>
                     <a class="active" href="shop2.php">2</a>
@@ -158,10 +171,10 @@
                     <a href="shop6.php">6</a>
                     <a href="shop7.php">7</a>
                     <a href="shop8.php">8</a>
-                    <a href="shop9.php">9</a>
-                    <a href="shop10.php">10</a>
                     <a href="shop3.php">&raquo;</a>
                 </div>
+
+                <h1 id="noresults">No results :(</h1>
             </div>
             <div id="filters">
                 <h1>SEARCH:</h1>
@@ -176,10 +189,77 @@
                 </div>
                 <h1>SORT BY:</h1>
                 <form action="<?php $_SERVER['PHP_SELF'] ?>" method="GET" id="filterform">
-                    <h2>‣ Country?</h2>
-                    
-                    <h2 onclick="dropdown('countrydropdown')">‣ Region?</h2>
+                    <h2 onclick="dropdown('countrydropdown')">‣ Country?</h2> <!--change-->
                     <div id="countrydropdown" class="dropdown">
+                        <input type="checkbox" value="china" name="filters[]" id="china">
+                        <label for="china">China</label><br>
+                        <input type="checkbox" value="japan" name="filters[]" id="japan">
+                        <label for="japan">Japan</label><br>
+                        <input type="checkbox" value="mongolia" name="filters[]" id="mongolia">
+                        <label for="mongolia">Mongolia</label><br>
+                        <input type="checkbox" value="southkorea" name="filters[]" id="southkorea">
+                        <label for="southkorea">South Korea</label><br>
+                        <input type="checkbox" value="kazakhstan" name="filters[]" id="kazakhstan">
+                        <label for="kazakhstan">Kazakhstan</label><br>
+                        <input type="checkbox" value="turkmenistan" name="filters[]" id="turkmenistan">
+                        <label for="turkmenistan">Turkmenistan</label><br>
+                        <input type="checkbox" value="bangladesh" name="filters[]" id="bangladesh">
+                        <label for="bangladesh">Bangladesh</label><br>
+                        <input type="checkbox" value="iran" name="filters[]" id="iran">
+                        <label for="iran">Iran</label><br>
+                        <input type="checkbox" value="maldives" name="filters[]" id="maldives">
+                        <label for="maldives">Maldives</label><br>
+                        <input type="checkbox" value="nepal" name="filters[]" id="nepal">
+                        <label for="nepal">Nepal</label><br>
+                        <input type="checkbox" value="pakistan" name="filters[]" id="pakistan">
+                        <label for="pakistan">Pakistan</label><br>
+                        <input type="checkbox" value="india" name="filters[]" id="india">
+                        <label for="india">India</label><br>
+                        <input type="checkbox" value="hongkong" name="filters[]" id="hongkong">
+                        <label for="hongkong">Hong Kong</label><br>
+                        <input type="checkbox" value="iraq" name="filters[]" id="iraq">
+                        <label for="iraq">Iraq</label><br>
+                        <input type="checkbox" value="israel" name="filters[]" id="israel">
+                        <label for="israel">Israel</label><br>
+                        <input type="checkbox" value="jordan" name="filters[]" id="jordan">
+                        <label for="jordan">Jordan</label><br>
+                        <input type="checkbox" value="lebanon" name="filters[]" id="lebanon">
+                        <label for="lebanon">Lebanon</label><br>
+                        <input type="checkbox" value="qatar" name="filters[]" id="qatar">
+                        <label for="qatar">Qatar</label><br>
+                        <input type="checkbox" value="saudiarabia" name="filters[]" id="saudiarabia">
+                        <label for="saudiarabia">Saudi Arabia</label><br>
+                        <input type="checkbox" value="turkey" name="filters[]" id="turkey">
+                        <label for="turkey">Turkey</label><br>
+                        <input type="checkbox" value="unitedarabemirates" name="filters[]" id="unitedarabemirates">
+                        <label for="unitedarabemirates">United Arab Emirates</label><br>
+                        <input type="checkbox" value="yemen" name="filters[]" id="yemen">
+                        <label for="yemen">Yemen</label><br>
+                        <input type="checkbox" value="brunei" name="filters[]" id="brunei">
+                        <label for="brunei">Brunei</label><br>
+                        <input type="checkbox" value="cambodia" name="filters[]" id="cambodia">
+                        <label for="cambodia">Cambodia</label><br>
+                        <input type="checkbox" value="indonesia" name="filters[]" id="indonesia">
+                        <label for="indonesia">Indonesia</label><br>
+                        <input type="checkbox" value="laos" name="filters[]" id="laos">
+                        <label for="laos">Laos</label><br>
+                        <input type="checkbox" value="malaysia" name="filters[]" id="malaysia">
+                        <label for="malaysia">Malaysia</label><br>
+                        <input type="checkbox" value="taiwan" name="filters[]" id="taiwan">
+                        <label for="taiwan">Taiwan</label><br>
+                        <input type="checkbox" value="philippines" name="filters[]" id="philippines">
+                        <label for="philippines">Philippines</label><br>
+                        <input type="checkbox" value="singapore" name="filters[]" id="singapore">
+                        <label for="singapore">Singapore</label><br>
+                        <input type="checkbox" value="thailand" name="filters[]" id="thailand">
+                        <label for="thailand">Thailand</label><br>
+                        <input type="checkbox" value="timorleste" name="filters[]" id="timorleste">
+                        <label for="timorleste">Timor Leste</label><br>
+                        <input type="checkbox" value="vietnam" name="filters[]" id="vietnam">
+                        <label for="vietnam">Vietnam</label><br>
+                    </div>
+                    <h2 onclick="dropdown('regiondropdown')">‣ Region?</h2>
+                    <div id="regiondropdown" class="dropdown">
                         <input type="checkbox" value="eastasia" name="filters[]" id="eastasia">
                         <label for="eastasia">East Asia</label><br>
                         <input type="checkbox" value="centralasia" name="filters[]" id="centralasia">
@@ -187,7 +267,9 @@
                         <input type="checkbox" value="southasia" name="filters[]" id="southasia">
                         <label for="southasia">South Asia</label><br>
                         <input type="checkbox" value="southeastasia" name="filters[]" id="southeastasia">
-                        <label for="southeastasia">South East Asia</label>
+                        <label for="southeastasia">South East Asia</label><br>
+                        <input type="checkbox" value="westernasiaterritories" name="filters[]" id="westernasiaterritories">
+                        <label for="westernasiaterritories">Western Asia or Territories</label>
                     </div>
                     <h2 onclick="dropdown('spicedropdown')">‣ Spice Level?</h2>
                     <div id="spicedropdown" class="dropdown">
@@ -202,18 +284,12 @@
                         <input type="checkbox" value="spice5" name="filters[]" id="spice5">
                         <label for="spice5">5 (Very spicy)</label>
                     </div>
-                    <h2 onclick="dropdown('allergydropdown')">‣ Common Allergy/Dietary Restrictions?</h2>
+                    <h2 onclick="dropdown('allergydropdown')">‣ Common Allergy Restrictions?</h2>
                     <div id="allergydropdown" class="dropdown">
                         <input type="checkbox" value="glutenfree" name="filters[]" id="glutenfree">
                         <label for="glutenfree">Gluten-free</label><br>
                         <input type="checkbox" value="peanutfree" name="filters[]" id="peanutfree">
                         <label for="peanutfree">Peanut-free</label><br>
-                        <input type="checkbox" value="soybeansfree" name="filters[]" id="soybeansfree">
-                        <label for="soybeansfree">Soybeans-free</label><br>
-                        <input type="checkbox" value="eggsfree" name="filters[]" id="eggsfree">
-                        <label for="eggsfree">Eggs-free</label><br>
-                        <input type="checkbox" value="milkfree" name="filters[]" id="milkfree">
-                        <label for="milkfree">Milk-free</label><br>
                         <input type="checkbox" value="sesamefree" name="filters[]" id="sesamefree">
                         <label for="sesamefree">Sesame-free</label><br>
                         <input type="checkbox" value="fishfree" name="filters[]" id="fishfree">
@@ -229,17 +305,15 @@
                         <label for="spicy">Spicy</label><br>
                         <input type="checkbox" value="savory" name="filters[]" id="savory">
                         <label for="savory">Savory</label><br>
-                        <input type="checkbox" value="sour" name="filters[]" id="sour">
-                        <label for="sour">Sour</label>
+                        <input type="checkbox" value="sweet" name="filters[]" id="sweet">
+                        <label for="sweet">Sweet</label>
                     </div>
-                    <h2 onclick="dropdown('noodledropdown')">‣ Noodle Type?</h2>
+                    <!-- <h2 onclick="dropdown('noodledropdown')">‣ Noodle Type?</h2>
                     <div id="noodledropdown" class="dropdown">
                         <input type="checkbox" value="ramen" name="filters[]" id="ramen">
                         <label for="ramen">Ramen</label><br>
                         <input type="checkbox" value="maggi" name="filters[]" id="maggi">
                         <label for="maggi">Maggi</label><br>
-                        <input type="checkbox" value="vermicelli" name="filters[]" id="vermicelli">
-                        <label for="vermicelli">Vermicelli</label><br>
                         <input type="checkbox" value="chowmein" name="filters[]" id="chowmein">
                         <label for="chowmein">Chow Mein</label><br>
                         <input type="checkbox" value="cupnoodles" name="filters[]" id="cupnoodles">
@@ -248,7 +322,7 @@
                         <label for="noodlesoup">Noodle Soup</label><br>
                         <input type="checkbox" value="cellophane" name="filters[]" id="cellophane">
                         <label for="cellophane">Cellophane</label>
-                    </div>
+                    </div> -->
                     <br>
                     <div id="submitfilters">
                         <input type="submit" value="Apply filters!"><br>
@@ -267,7 +341,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="script.js"></script>
     
-    <script type="text/javascript"> //remember to delete
+    <script type="text/javascript"> 
     </script>
 
     <!--PHP code for filters-->
@@ -304,8 +378,12 @@
                 }
                 
                 for (var i = 0; i < finalArray.length; i++){
-                    finalArray[i].style.display = 'block';
+                    finalArray[i].style.display = 'flex';
                 }
+                if (finalArray.length == 0){
+                    document.getElementById('noresults').style.display = "block";
+                }
+                document.getElementById('pagination').style.display = 'none';
                 
             </script>
     <?php
@@ -347,14 +425,20 @@
                         <script>
                             var items = document.getElementsByClassName("<?php echo $rows['id']?>");
                             for (var i=0; i < items.length; i++){
-                                items[i].style.display='block';
+                                items[i].style.display='flex';
+                                document.getElementById('pagination').style.display = 'none';
                             }
                         </script>
     <?php
                     }
 
                 }else{
-                    echo "No results :(";
+                    echo "
+                    <script>
+                        document.getElementById('pagination').style.display = 'none';
+                        document.getElementById('noresults').style.display = 'block';
+                    </script>
+                    ";
                 }
 
                 //displays the go back button

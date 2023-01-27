@@ -118,7 +118,7 @@ button:hover{
     display: block;
 }
 #flagslideshow{
-    overflow: hidden;
+    overflow-x: hidden;
     max-width: 1100px;
     width: 100%;
     margin: 0 auto;
@@ -380,7 +380,6 @@ input[type=submit]:hover{
     color:#A70B0B;
 }
 #sidebyside{
-    display:flex;
     margin-left:4%;
     margin-right:4%;
 }
@@ -467,7 +466,9 @@ input[type=submit]:hover{
     height:110%;
     object-fit:cover;
 }
-
+#hiddenimagesoverlay{
+    display:none;
+}
 #searchbar{
     display:flex;
     font-size:150%;
@@ -591,6 +592,11 @@ input[type=number]:focus {
     margin:auto;
 }
 
+/*Styling for credits.php*/
+pre{
+    overflow:scroll;
+}
+
 /*Styling for computer-specific displays*/
 @media (min-width: 1000px){
     #title{
@@ -634,6 +640,35 @@ input[type=number]:focus {
     .flexbox > div input[type=text]{
         width:50%;
     }
+    #sidebyside{
+        display:flex;
+    }
 
+}
+
+@media (max-width: 1000px){
+    #filters{
+        width:90%;
+        padding:3%;
+    }
+    #noodlepics{
+        width:90%;
+    }
+    .noodlesoverlay{
+        display:block;
+        height:80%;
+    }
+    .noodleoverlay1{
+        display:none;
+    }
+    .noodleoverlay2 h1{
+        font-size:120%;
+    }
+    .content table{
+        font-size:100%;
+    }
+    #hiddenimagesoverlay{
+        display:block;
+    }
 }
   

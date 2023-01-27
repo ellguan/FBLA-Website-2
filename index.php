@@ -29,6 +29,13 @@
         <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300&display=swap" rel="stylesheet">
 
         <style>
+            #title img{
+                height:10%;
+                width:10%;
+            }
+            #title h1{
+                margin-top:-3%;
+            }
         </style>
     </head>
     <body>
@@ -49,6 +56,7 @@
         </span>
 
         <div id="title">
+            <img src="pictures/heart.png">
             <h1>HAAPiness starts here.</h1>
             <button id="gotoshop" onclick="goShop()">Start exploring &#8594</button> 
         </div>

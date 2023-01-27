@@ -163,6 +163,7 @@
                         </div>
                         <div class="noodleoverlay2">
                             <h1 onclick="itemclose('<?php echo (string)$rows['noodleid'];?>')" class="closenoodleoverlay">&times;</h1>
+                            <img id="hiddenimageoverlay" src="<?php echo $rows['image'];?>"><br>
                             <h1><?php echo $rows['fullname']?></h1>
                             <h2>Filters:</h2><p><?php echo str_replace("addtocart","", $rows['filters']);?></p>
                             <h2>$<?php echo $rows['price'];?></h2>
@@ -190,7 +191,7 @@
                     <a href="shop2.php">&raquo;</a>
                 </div>
 
-                <h1 id="noresults">No results :(</h1>
+                <h1 id="noresults">This product is currently unavailable. If you would like to see it in our shop, please suggest through our feedback form on our home page, and we will try to make it available in the future!</h1>
             </div>
             <div id="filters">
                 <h1>SEARCH:</h1>

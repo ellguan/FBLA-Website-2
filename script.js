@@ -164,9 +164,14 @@ function deleteProduct(id, price){
     }
     document.getElementById('total').innerHTML = "Total = $" + total;
 
-    $.post('shoppingcart.php', {
-        id: id
-    })
+    $.ajax({
+        url: "deleteproduct.php",
+        type: "POST",
+        data: {id: id},
+        success: function(data){
+            console.log(data);
+        }
+    });
 }
 
 // checkoutButtons();

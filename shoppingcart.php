@@ -90,8 +90,8 @@
             <table>
                 <thead>
                     <tr>
-                        <th><h1>Name</h1></th>
                         <th><h1>Image</h1></th>
+                        <th><h1>Name</h1></th>
                         <th><h1>Price</h1></th>
                     </tr>
                 </thead>
@@ -153,10 +153,12 @@
         if (isset($_POST['id'])){
             $deletedProduct = $_POST['id'];
             $productIndex = array_search($deletedProduct, $_SESSION["cart"]);
-            unset($_SESSION["cart"][$productIndex]);
-            unset($_SESSION["cartamount"][$productIndex]);
-            array_values($_SESSION["cart"]);
-            array_values($_SESSION["cartamount"]);
+            array_splice($_SESSION["cart"], $productIndex, $productIndex);
+            array_splice($_SESSION["cartamount"], $productIndex, $productIndex);
+            // unset($_SESSION["cart"][$productIndex]);
+            // unset($_SESSION["cartamount"][$productIndex]);
+            // array_values($_SESSION["cart"]);
+            // array_values($_SESSION["cartamount"]);
         }
     ?>
 

@@ -164,11 +164,9 @@ function deleteProduct(id, price){
     }
     document.getElementById('total').innerHTML = "Total = $" + total;
 
-    $.ajax({
-        method: "POST",
-        url: "shoppingcart.php",
-        data: { id: id }
-      })
+    $.post('shoppingcart.php', {
+        id: id
+    })
 }
 
 // checkoutButtons();

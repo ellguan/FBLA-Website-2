@@ -107,7 +107,7 @@
         <div id="sidebyside">
             <div id="noodlepics">
                 <?php
-                    foreach($_SESSION["shop1"] as $rows){
+                    foreach($_SESSION["shop2"] as $rows){
                 ?>
                     <div class="noodlepic addtocart <?php echo $rows['id'];?> <?php echo $rows['filters'];?>" onclick="itemopen('<?php echo (string)$rows['noodleid'];?>')">
                         <div>
@@ -145,7 +145,7 @@
                 <!--the rest of the noodles-->
                 <?php
                     foreach($_SESSION["allnoodles"] as $rows){
-                        if(!(in_array($rows, $_SESSION["shop1"]))){
+                        if(!(in_array($rows, $_SESSION["shop2"]))){
                 ?>
                     <div class="all noodlepic addtocart <?php echo $rows['id'];?> <?php echo $rows['filters'];?>" onclick="itemopen('<?php echo (string)$rows['noodleid'];?>')" <?php echo $rows['filters'];?>>
                         <div>

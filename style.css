@@ -264,9 +264,6 @@ button:hover{
     font-size:150%;
     color:white;
 }
-#abouttitle{
-    display:flex;
-}
 #aboutme img{
     border-radius:100%;
     width:30%;
@@ -641,6 +638,9 @@ pre{
         width:50%;
     }
     #sidebyside{
+        display:flex;
+    }
+    #abouttitle{
         display:flex;
     }
 

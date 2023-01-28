@@ -163,7 +163,6 @@
                         </div>
                         <div class="noodleoverlay2">
                             <h1 onclick="itemclose('<?php echo (string)$rows['noodleid'];?>')" class="closenoodleoverlay">&times;</h1>
-                            <img id="hiddenimageoverlay" src="<?php echo $rows['image'];?>"><br>
                             <h1><?php echo $rows['fullname']?></h1>
                             <h2>Filters:</h2><p><?php echo str_replace("addtocart","", $rows['filters']);?></p>
                             <h2>$<?php echo $rows['price'];?></h2>

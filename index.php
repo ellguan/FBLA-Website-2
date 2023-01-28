@@ -57,7 +57,7 @@
 
         <div id="title">
             <img src="pictures/heart.png">
-            <h1>HAAPiness starts here.</h1>
+            <h1>HAAPIness starts here.</h1>
             <button id="gotoshop" onclick="goShop()">Start exploring &#8594</button> 
         </div>
 
@@ -161,8 +161,11 @@
                 <h3>Authentic ingredients. Straight to your doorstep.</h3>
                 <div id="abouttitle">
                     <img src="https://images.unsplash.com/photo-1585032226651-759b368d7246?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=992&q=80">
-                    <p>We started this online retailing company as Instant noodles are a meal that we all enjoy! Instant noodles not only have a great variety of flavors, but are also able to be enjoyed anywhere at any time. They can also conveniently be found at a variety of grocery and convenience stores. Simply pouring hot water in a cup, or boiling hot water and submerging the contents inside an instant ramen packet, you are able to easily prepare an amazing meal for yourself or you and your friends/family to enjoy. Though Instant noodles can be conveniently found in several retail stores, a variety of Authentic instant noodles are not as readily available in several parts of the world. Our team consists of three students from the Illinois Mathematics and Science Academy who all originate from different parts of Asia: Diya Kamath, Ellen Guan, and Laasya Nagumalli. We are currently located in Illinois and we aim to make Authentic Instant Noodles from all across Asia readily available for purchase from anywhere around the world with the press of a button. A percentage of our profits are donated to small asian business and we continue to try and expand to provide the best service and variety of instant authentic Asian noodles to our customers. </p>
+                    <p>Asian American Pacific Islanders make up a cultural mosaic in America, hosting a manifold assortment of unique customs and traditions. As of the 2020 Census, 24 million people identified as Asian and 1.6 million identified as Native Hawaiian and Other Pacific Islander, either as their only identity or in combination with another identity. It is easy for one to get lost in the vastness of the Americas when it is an ocean away from one’s own roots. </p>
+                    
                 </div>
+                <p>The founders of this business, Ellen Guan, Diya Kamath, and Laasya Nagumalli, created this website as a means of interlacing one’s own American identity with the cultures from which we all come; Ellen, Laasya, and Diya are all members of the AAPI community, and what connects people better than food? Noodles, an integral part to countless AAPI cuisines, and instant food, a foundational comfort food of American recreation, birthed the initiative: Be HAAPI, Eat Noodles. Authentic instant noodles are not readily available in many parts of the world, but HAAPIness will ship to any address, no matter the distance. With a commitment to equity and equal access, just add water and heat to enjoy a filling meal from any AAPI country that you wish. With HAAPIness, you can resuscitate connectedness to your own culture and customs.</p>
+                <h3>Be HAAPI, Eat Noodles!</h3>
             </div>
         </div>
         <div id="parallax2">

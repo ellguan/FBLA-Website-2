@@ -39,12 +39,16 @@
         </style>
     </head>
     <body>
+        <button onclick="topFunction()" id="scrolltop" title="Go to top">&uarr;</button>
+
         <div id="menu" onclick="menuclose()">
             <div id="menuitems">
                 <h1 onclick="menuclose()">&times;</h1>
                 <!--logo here-->
                 <!--line here-->
                 <h1 onclick="goHome()">Home</h1>
+                <h1 onclick="goAbout()">About</h1>
+                <h1 onclick="goContact()">Contact</h1>
                 <h1 onclick="goShop()">Products</h1>
                 <h1 onclick="goCart()">Shopping Cart</h1>
                 <h1 onclick="goCredits()">Credits</h1>
@@ -170,8 +174,8 @@
         </div>
         <div id="parallax2">
             <div id="form" class="reveal">
-                <h1>Sign up to be apart of our mailing list!</h1> 
-                <p>Get notified when we release new products or deals!</p>
+                <h1>Talk to us!</h1> 
+                <p>Know a brand you love but don't see? Or any other general questions or comments? We would love to hear from you!</p>
                 <form>
                     <div class="flexbox">
                         <div>
@@ -184,11 +188,13 @@
                         </div>
                     </div>
                     <br>
-                    <label for="message">Know a brand you love but don't see? Or any other general questions or comments? We would love to hear from you!</label><br>
-                    <textarea name="message"></textarea><br>
+                    <label for="message">Tell us what you think!</label><br>
+                    <textarea name="message"></textarea><br><br>
+                    <input type="checkbox" value="mailinglist" name="mailinglist" id="mailinglist">
+                    <label for="mailinglist">Click here to sign up to be apart of our mailing list and be the first person to know when we release new deals!</label><br>
                     <br>
                 </form>
-                <button onclick="signup()">Sign up!</button>
+                <button onclick="signup()">Send!</button>
             </div>
             <br>
             <div id="footer">&copy; Be HAAPI, Eat Noodles 2022-<?php echo date("Y");?></div>

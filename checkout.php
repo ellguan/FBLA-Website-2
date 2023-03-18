@@ -65,6 +65,8 @@
                 <h1 onclick="menuclose()">&times;</h1>
                 <!--logo here-->
                 <!--line here-->
+                <h1 onclick="goAbout()">About</h1>
+                <h1 onclick="goContact()">Contact</h1>
                 <h1 onclick="goHome()">Home</h1>
                 <h1 onclick="goShop()">Products</h1>
                 <h1 onclick="goCart()">Shopping Cart</h1>

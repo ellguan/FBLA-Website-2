@@ -1,3 +1,8 @@
+html {
+    scroll-behavior: smooth;
+  }
+  
+
 body{
     background-image:url("pictures/front image.jpg");
     background-repeat: no-repeat;
@@ -5,6 +10,26 @@ body{
     background-size: cover;
     font-family: 'Jost', sans-serif;
     margin:auto;
+}
+
+#scrolltop {
+    display: none; /* Hidden by default */
+    position: fixed; /* Fixed/sticky position */
+    bottom: 20px; /* Place the button at the bottom of the page */
+    right: 30px; /* Place the button 30px from the right */
+    z-index: 99; /* Make sure it does not overlap */
+    border: none; /* Remove borders */
+    outline: none; /* Remove outline */
+    background-color: #F1BA0A; /* Set a background color */
+    color: white; /* Text color */
+    cursor: pointer; /* Add a mouse pointer on hover */
+    padding: 15px; /* Some padding */
+    font-size: 18px; /* Increase font size */
+    transition: .5s;
+}
+  
+#scrolltop:hover {
+    background-color: #F6DE26; /* Add a dark-grey background on hover */
 }
 
 /* .reveal{

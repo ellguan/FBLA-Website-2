@@ -113,19 +113,19 @@
         <div id="favorites" class="reveal"> <!--LINK TO THE OVERLAYS AND STUFF-->
             <div id="column1">
                 <div id="favorite1" class="favoritehover" onclick="gotoimage('jinmailang')">
-                    <img src="pictures/noodles/jinmailang.jpg">
+                    <img src="pictures/noodles/jinmailang.png">
                     <div class="favoriteoverlay">
                         <h1>Jin Mai Lang-Instant Noodle Artificial Spicy Hot Beef</h1>
                     </div>
                 </div>
                 <div id="favorite2" class="favoritehover" onclick="gotoimage('nissin')">
-                    <img src="pictures/noodles/nissindemae.jpg">
+                    <img src="pictures/noodles/nissindemae.png">
                     <div class="favoriteoverlay">
                         <h1>Nissin Demae Ramen Shoyu Tonkotsu Artificial Pork Flavor</h1>
                     </div>
                 </div>
                 <div id="favorite3" class="favoritehover" onclick="gotoimage('shinhorng')">
-                    <img src="pictures/noodles/lukang.jpg">
+                    <img src="pictures/noodles/lukang.png">
                     <div class="favoriteoverlay">
                         <h1>Shin Horng Lukang Thin Noodles Ginger & Sesame Oil Flavor</h1>
                     </div>
@@ -134,13 +134,13 @@
             </div>
             <div id="column2">
                 <div id="favorite4" class="favoritehover" onclick="gotoimage('LuckyMeJjamppong')">
-                    <img src="pictures/noodles/jjamppong.jpg">
+                    <img src="pictures/noodles/jjamppong.png">
                     <div class="favoriteoverlay">
                         <h1>Lucky Me! Special Instant Noodles Jjamppong</h1>
                     </div>
                 </div>
                 <div id="favorite5" class="favoritehover" onclick="gotoimage('NongshimBudae')">
-                    <img src="pictures/noodles/nongshim.jpg">
+                    <img src="pictures/noodles/nongshim.png">
                     <div class="favoriteoverlay">
                         <h1>Nongshim Budae Jjigae Noodle Soup</h1>
                     </div>

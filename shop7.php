@@ -165,6 +165,7 @@
                     <a href="shop6.php">6</a>
                     <a class="active" href="shop7.php">7</a>
                     <a href="shop8.php">8</a>
+                    <a href="shop9.php">9</a>
                     <a href="shop8.php">&raquo;</a>
                 </div>
 
@@ -251,6 +252,28 @@
                         <label for="timorleste">Timor Leste</label><br>
                         <input type="checkbox" value="vietnam" name="filters[]" id="vietnam">
                         <label for="vietnam">Vietnam</label><br>
+                        <input type="checkbox" value="carolineislands" name="filters[]" id="carolineislands">
+                        <label for="carolineislands">Caroline Islands</label><br>
+                        <input type="checkbox" value="northernmarianaislands" name="filters[]" id="northernmarianaislands">
+                        <label for="northernmarianaislands">Northern Mariana Islands</label><br>
+                        <input type="checkbox" value="fiji" name="filters[]" id="fiji">
+                        <label for="fiji">Fiji</label><br>
+                        <input type="checkbox" value="newcaledonia" name="filters[]" id="newcaledonia">
+                        <label for="newcaledonia">New Caledonia</label><br>
+                        <input type="checkbox" value="papuanewguinea" name="filters[]" id="papuanewguinea">
+                        <label for="papuanewguinea">Papua New Guinea</label><br>
+                        <input type="checkbox" value="solomonislands" name="filters[]" id="solomonislands">          
+                        <label for="solomonislands">Solomon Islands</label><br>
+                        <input type="checkbox" value="vanuatu" name="filters[]" id="vanuatu">
+                        <label for="vanuatu">Vanuatu</label><br>
+                        <input type="checkbox" value="marshallislands" name="filters[]" id="marshallislands">
+                        <label for="marshallislands">Marshall Islands</label><br>
+                        <input type="checkbox" value="newzealand" name="filters[]" id="newzealand">
+                        <label for="newzealand">New Zealand</label><br>
+                        <input type="checkbox" value="samoa" name="filters[]" id="samoa">
+                        <label for="samoa">Samoa</label><br>
+                        <input type="checkbox" value="hawaii" name="filters[]" id="hawaii">
+                        <label for="hawaii">Hawaii</label><br>
                     </div>
                     <h2 onclick="dropdown('regiondropdown')">‣ Region?</h2>
                     <div id="regiondropdown" class="dropdown">
@@ -264,6 +287,8 @@
                         <label for="southeastasia">South East Asia</label><br>
                         <input type="checkbox" value="westernasiaterritories" name="filters[]" id="westernasiaterritories">
                         <label for="westernasiaterritories">Western Asia or Territories</label>
+                        <input type="checkbox" value="pacificislanders" name="filters[]" id="pacificislanders">
+                        <label for="pacificislanders">Pacific Islands</label>
                     </div>
                     <h2 onclick="dropdown('spicedropdown')">‣ Spice Level?</h2>
                     <div id="spicedropdown" class="dropdown">

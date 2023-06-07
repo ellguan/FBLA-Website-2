@@ -6,15 +6,17 @@
     //     header("location: login.php"); //redirects to main page if person is already authenticated
     // }
 
-    if(isset($_GET['logout'])){
-        session_destroy();
-        unset($_SESSION);
-        header("location: login.php");
-    }
+    // if(isset($_GET['logout'])){
+    //     session_destroy();
+    //     unset($_SESSION);
+    //     header("location: login.php");
+    // }
 
     //creates the arrays for the shop and shopping cart
-    $_SESSION["cart"] = array();
-    $_SESSION["cartamount"] = array();
+    if(!isset($_SESSION['cart'])){
+        $_SESSION["cart"] = array();
+        $_SESSION["cartamount"] = array();
+    }
 
 ?>
 <!DOCTYPE html>
@@ -27,14 +29,38 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
         <style>
             #title img{
                 height:10%;
                 width:10%;
             }
-            #title h1{
-                margin-top:-3%;
+            #welcomelogin, #loggedinform, #adminlink{
+                display:none;
+            }
+
+            @media (max-width: 1000px){
+                #slideshow{
+                    min-height: 1000px;
+                }
+                #parallax, #parallax3{
+                   font-size:150%; 
+                }
+                #aboutme{
+                    font-size:100%;
+                }
+                #aboutme img{
+                    width:100%;
+                    height:100%;
+                    padding:2%;
+                }
+                #form{
+                    max-width:80%;
+                }
+                #title {
+                    margin-top:20%;
+                }
             }
         </style>
     </head>
@@ -48,6 +74,7 @@
                 <!--line here-->
                 <h1 onclick="goHome()">Home</h1>
                 <h1 onclick="goAbout()">About</h1>
+                <h1 onclick="login()" id="loginlink">Login</h1>
                 <h1 onclick="goContact()">Contact</h1>
                 <h1 onclick="goShop()">Products</h1>
                 <h1 onclick="goCart()">Shopping Cart</h1>
@@ -58,9 +85,31 @@
         <span> 
             <button id="menubutton" onclick="menuopen()">☰ Be HAAPI, Eat Noodles</button> 
         </span>
+        
+        <span>
+            <button id="homebtn" onclick="goHome()"></button>
+        </span>
+
+        <!-- <i id="login" class="fa fa-user" style="font-size:200%;" onclick="login()"></i> -->
+        <div id="loginformdiv">
+            <form id="loginform" action="jslogin.php" method="post">
+                <h1 onclick="loginclose()" id="closelogin" style="font-size:400%;">&times;</h1>
+                <h3 id="loggedinform">You are currently signed in as <?php echo $_SESSION['name'] ?>. Click here to <a href="logout.php">Log out</a>. Note that logging out will delete any products currently in your cart.</h3>
+                <img src="pictures/heart2.png">
+                <h1><i class="fa fa-user"></i> Username</h1>
+                <input type="text" placeholder="Enter username" name="username" required style="font-size:100%;" autocomplete="on">
+                <h1><i class="fa fa-key"></i> Password</h1>
+                <input type="password" placeholder="Enter password" name="password" required autocomplete="on"><br><br>
+                <button type="submit">Login!</button>
+                <p>Don't have an account? <a href="registration.php">Sign Up!</a></p>
+            </form>
+        </div>
+
+        <!-- <i id="cart" class="fa fa-shopping-cart" style="font-size:200%;" onclick="goCart()"></i> -->
 
         <div id="title">
-            <img src="pictures/heart.png">
+            <h5 style="color:#F1BA0A;" id="welcomelogin">Welcome back, <?php echo $_SESSION['name'] ?>!</h5>
+            <h5 id="adminlink"><a href="adminpage.php">Click here to go to the admin portal.</a></h5>
             <h1>HAAPIness starts here.</h1>
             <button id="gotoshop" onclick="goShop()">Start exploring &#8594</button> 
         </div>
@@ -176,25 +225,26 @@
             <div id="form" class="reveal">
                 <h1>Talk to us!</h1> 
                 <p>Know a brand you love but don't see? Or any other general questions or comments? We would love to hear from you!</p>
-                <form>
+                <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> <!-- converts special characters to HTML entities -->
                     <div class="flexbox">
                         <div>
                             <label for="name">Name:</label><br>
-                            <input type="text" id="name" name="name"><br>
+                            <input type="text" id="name" name="name" required autocomplete="on"><br>
                         </div>
                         <div>
                             <label for="email">Email:</label><br>
-                            <input type="text" id="email" name="email"><br>
+                            <input type="text" id="email" name="email" required autocomplete="on"><br>
                         </div>
                     </div>
                     <br>
-                    <label for="message">Tell us what you think!</label><br>
-                    <textarea name="message"></textarea><br><br>
+                    Tell us what you think!<br>
+                    <textarea name="message" required></textarea><br><br>
                     <input type="checkbox" value="mailinglist" name="mailinglist" id="mailinglist">
                     <label for="mailinglist">Click here to sign up to be apart of our mailing list and be the first person to know when we release new deals!</label><br>
                     <br>
+                    <button type="submit">Send!</button>
                 </form>
-                <button onclick="signup()">Send!</button>
+                <!--<button onclick="signup()">Send!</button>-->
             </div>
             <br>
             <div id="footer">&copy; Be HAAPI, Eat Noodles 2022-<?php echo date("Y");?></div>
@@ -202,18 +252,68 @@
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="script.js" type="text/javascript"></script>
         <script>
-           function signup(){
-    Swal.fire({
-        position: 'top-end',
-        icon: 'success',
-        title: 'You have signed up for the mailing list!',
-        showConfirmButton: false,
-        timer: 1500
-    })
-}
+            function signup(){
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'You have signed up for the mailing list!',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            }
+            function loggedin(){
+                Swal.fire({
+                    icon: 'success',
+                    title: 'You have successfully logged in!'
+                })
+            }
         </script>
     </body>
     <?php
+        if(isset($_SESSION['loggedin'])){
+            if($_SESSION['loggedin'] == "true"){
+                echo "<script src='script.js'>
+                </script><script src='//cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+                <script>loggedin()</script>";
+                echo "<style>#welcomelogin, #loggedinform{display:block;}</style>";
+                echo "<script>document.getElementById('loginlink').innerHTML = 'Logout';</script>";
+                if($_SESSION['userlogin']['isAdmin'] == 'true'){
+                    echo "<style>#adminlink{display:block;}</style>";
+                }
+                $_SESSION['loggedin'] = "no";
+            }
+            if($_SESSION["loggedin"] == "false"){
+                echo "<script src='script.js'>
+                </script><script src='//cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+                <script>loginerror()</script>";
+                $_SESSION['loggedin'] = "else";
+            }
+            if($_SESSION["loggedin"] == "no"){
+                echo "<style>#welcomelogin, #loggedinform{display:block;}</style>";
+                echo "<script>document.getElementById('loginlink').innerHTML = 'Logout';</script>";
+            }
+        }
+        $name = $email = $message = $username = $secretword = "";
+        $emailErr = "";
+
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+/*             $username = $_POST['username'];
+            $secretword = $_POST['password']; */
+            $name = test_input($_POST["name"]);
+            $email = test_input($_POST["email"]);
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                $emailErr = "Invalid email format";
+              }
+            $message = test_input($_POST["message"]);
+            echo "<script>signup()</script>";
+        }
+
+        function test_input($data) {
+            $data = stripslashes($data);
+            $data = htmlspecialchars($data);
+            return $data;
+        }
+
         //attempting to add random prices for all of the noodles.
         // $priceoptions = array(3, 3.5, 4, 4.5, 5);
         // $prices = array();

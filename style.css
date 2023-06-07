@@ -48,9 +48,36 @@ img{
 #menubutton{
     font-size:200%;
     border:none;
+    position:fixed;
+    width:100%;
+    text-align:left;
+    background-color: #15151d;
+    z-index:1;
 }
 
-#menu{
+#homebtn{
+    background-image: url(pictures/heart.png);
+    background-size:100%;
+    background-repeat: no-repeat;
+    padding:2%;
+    position: absolute;
+    top: .5%;
+    right: .5%;
+    border:none;
+    z-index:1;
+    position:fixed;
+}
+
+#login, #cart{
+    color:#F1BA0A;
+    transition:.5s;
+}
+#login:hover, #cart:hover{
+    color:#A70B0B;
+    cursor:pointer;
+}
+
+#menu, #loginformdiv{
     position:fixed;
     width:0;
     height:100%;
@@ -64,7 +91,7 @@ img{
     transition:.5s;
 }
 
-#menuitems{
+#menuitems, #loginform{
     position: absolute;
     top: 50%;
     left: 50%;
@@ -77,12 +104,34 @@ img{
     padding:5%;
 }
 
-#menuitems h1{
+#menuitems h1, #closelogin{
     transition: .5s ease;
 }
-#menuitems h1:hover{
+#menuitems h1:hover, #closelogin:hover{
     color: #F1BA0A;
     cursor:pointer;
+}
+#loginformdiv button{
+    color:white;
+    transition:.5s;
+    font-size: 150%;
+    border-color:white;
+}
+#loginformdiv button:hover{
+    color:#F1BA0A;
+    border-color:#F1BA0A;
+}
+#loginform a{
+    text-decoration:underline;
+    color: #F1BA0A;
+    transition: .5s ease;
+}
+#loginform a:hover{
+    color:#F6DE26;
+}
+#loginform img{
+    width:25%;
+    height:25%;
 }
 
 #title{
@@ -331,7 +380,7 @@ textarea{
     resize:none;
 }
 
-input[type=text], textarea{
+input[type=text], textarea, input[type=password]{
     padding:1%;
     background-color:white;
     -webkit-transition: 0.5s;
@@ -347,8 +396,12 @@ input[type=text]:hover, textarea {
     border: 1% solid black;
 }
 
-input[type=text]{
+input[type=text], input[type=password]{
     width:100%;
+}
+
+input[type=password]{
+    font-size:100%;
 }
 
 input[type=submit]{
@@ -392,7 +445,8 @@ input[type=submit]:hover{
 #header{
     font-size:200%;
     text-align: left;
-    margin-left:10%;
+    margin-left:5%;
+    padding:5%;
 }
 #header h1, h2{
     cursor:pointer;
@@ -535,6 +589,9 @@ input[type=submit]:hover{
 .dropdown{
     display:none;
 }
+.filterblock{
+    display:flex;
+}
 #checkout{
     font-size:400%;
     left: 50%;                        /* horizontal alignment */
@@ -589,9 +646,7 @@ input[type=number]:focus {
     border-bottom:5px solid #F1BA0A; 
     padding:2%
 }
-.content {
-    padding:2%;
-}
+
 .content hr{
     width:95%;
     border: #F1BA0A solid 5px;
@@ -668,20 +723,44 @@ pre{
     #abouttitle{
         display:flex;
     }
-
 }
 
 @media (max-width: 1000px){
+    #header{
+        margin-top:20%;
+    }
+    #homebtn{
+        display:none;
+    }
+    #login, #cart{
+        display:none;
+    }
+    #menuitems{
+        width:60%;
+    }
+    #loginform{
+        width:75%;
+    }
     #filters{
         width:90%;
         padding:3%;
+    }
+    #header img{
+        width:100%;
+        height:100%;
+    }
+    #loginform img{
+        width:50%;
+    }
+    .noodlepic{
+        display:block;
     }
     #noodlepics{
         width:90%;
     }
     .noodlesoverlay{
         display:block;
-        height:80%;
+        height:90%;
     }
     .noodleoverlay1{
         display:none;
@@ -694,6 +773,10 @@ pre{
     }
     #hiddenimagesoverlay{
         display:block;
+    }
+    .noodleoverlay1, .noodleoverlay2{
+        width:80%;
+        height:90%;
     }
 }
   

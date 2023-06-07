@@ -90,6 +90,7 @@
                 <!--line here-->
                 <h1 onclick="goHome()">Home</h1>
                 <h1 onclick="goAbout()">About</h1>
+                <h1 onclick="login()" id="loginlink">Login</h1>
                 <h1 onclick="goContact()">Contact</h1>
                 <h1 onclick="goShop()">Products</h1>
                 <h1 onclick="goCart()">Shopping Cart</h1>
@@ -98,13 +99,31 @@
         </div>
 
         <span> 
-            <button id="menubutton" onclick="menuopen()">☰</button> 
+            <button id="menubutton" onclick="menuopen()">☰ Be HAAPI, Eat Noodles</button> 
         </span>
 
-        <div id="header">
-            <img src="pictures/shop.png">
-            <h1 onclick="goHome()">Be HAAPI, Eat Noodles</h1>
+        <span>
+            <button id="homebtn" onclick="goHome()"></button>
+        </span>
+
+        <div id="loginformdiv">
+            <form id="loginform" action="jslogin.php" method="post">
+                <h1 onclick="loginclose()" id="closelogin" style="font-size:400%;">&times;</h1>
+                <h3 id="loggedinform">You are currently signed in as <?php echo $_SESSION['name'] ?>. Click here to <a href="logout.php">Log out</a>. Note that logging out will delete any products currently in your cart.</h3>
+                <img src="pictures/heart2.png">
+                <h1><i class="fa fa-user"></i> Username</h1>
+                <input type="text" placeholder="Enter username" name="username" required style="font-size:100%;" autocomplete="on">
+                <h1><i class="fa fa-key"></i> Password</h1>
+                <input type="password" placeholder="Enter password" name="password" required autocomplete="on"><br><br>
+                <button type="submit">Login!</button>
+                <p>Don't have an account? <a href="registration.php">Sign Up!</a></p>
+            </form>
         </div>
+
+        <div id="header">
+            <img src="pictures/shop.png"> 
+        </div>
+        
         <br>
         <br>
         <div id="sidebyside">
@@ -209,7 +228,7 @@
                 </div>
                 <h1>SORT BY:</h1>
                 <form action="<?php $_SERVER['PHP_SELF'] ?>" method="GET" id="filterform">
-                    <h2 onclick="dropdown('countrydropdown')">‣ Country?</h2> <!--change-->
+                    <h2 onclick="dropdown('countrydropdown')"><div class="filterblock"><span id="countrydropdownbtn">‣</span><span> Country?</span></div></h2>
                     <div id="countrydropdown" class="dropdown">
                         <input type="checkbox" value="china" name="filters[]" id="china">
                         <label for="china">China</label><br>
@@ -300,7 +319,7 @@
                         <input type="checkbox" value="hawaii" name="filters[]" id="hawaii">
                         <label for="hawaii">Hawaii</label><br>
                     </div>
-                    <h2 onclick="dropdown('regiondropdown')">‣ Region?</h2>
+                    <h2 onclick="dropdown('regiondropdown')"><div class="filterblock"><span id="regiondropdownbtn">‣</span><span> Region?</span></div></h2>
                     <div id="regiondropdown" class="dropdown">
                         <input type="checkbox" value="eastasia" name="filters[]" id="eastasia">
                         <label for="eastasia">East Asia</label><br>
@@ -315,7 +334,7 @@
                         <input type="checkbox" value="pacificislanders" name="filters[]" id="pacificislanders">
                         <label for="pacificislanders">Pacific Islands</label>
                     </div>
-                    <h2 onclick="dropdown('spicedropdown')">‣ Spice Level?</h2>
+                    <h2 onclick="dropdown('spicedropdown')"><div class="filterblock"><span id="spicedropdownbtn">‣</span><span> Spice Level?</span></div></h2>
                     <div id="spicedropdown" class="dropdown">
                         <input type="checkbox" value="spice1" name="filters[]" id="spice1">
                         <label for="spice1">1 (Not spicy)</label><br>
@@ -328,7 +347,7 @@
                         <input type="checkbox" value="spice5" name="filters[]" id="spice5">
                         <label for="spice5">5 (Very spicy)</label>
                     </div>
-                    <h2 onclick="dropdown('allergydropdown')">‣ Common Allergy Restrictions?</h2>
+                    <h2 onclick="dropdown('allergydropdown')"><div class="filterblock"><span id="allergydropdownbtn">‣</span><span> Common Allergies?</span></div></h2>
                     <div id="allergydropdown" class="dropdown">
                         <input type="checkbox" value="glutenfree" name="filters[]" id="glutenfree">
                         <label for="glutenfree">Gluten-free</label><br>
@@ -343,7 +362,7 @@
                         <input type="checkbox" value="shellfishfree" name="filters[]" id="shellfishfree">
                         <label for="shellfishfree">Shellfish-free</label>
                     </div>
-                    <h2 onclick="dropdown('tastedropdown')">‣ Taste?</h2>
+                    <h2 onclick="dropdown('tastedropdown')"><div class="filterblock"><span id="tastedropdownbtn">‣</span><span> Taste?</span></div></h2>
                     <div id="tastedropdown" class="dropdown">
                         <input type="checkbox" value="spicy" name="filters[]" id="spicy">
                         <label for="spicy">Spicy</label><br>
@@ -493,6 +512,11 @@
                     ";
             }else{ // if query length is less than minimum
                 echo "Minimum length is ".$min_length;
+            }
+        }
+        if(isset($_SESSION['loggedin'])){
+            if($_SESSION['loggedin'] == "true" || $_SESSION['loggedin'] == "no"){
+                echo "<script>document.getElementById('loginlink').innerHTML = 'Logout';</script>";
             }
         }
         

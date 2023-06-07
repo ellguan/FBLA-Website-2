@@ -23,7 +23,9 @@
             }
         </style>
     </head>
-    <body>
+    <body>        
+        <button onclick="topFunction()" id="scrolltop" title="Go to top">&uarr;</button>
+
         <div id="menu" onclick="menuclose()">
             <div id="menuitems">
                 <h1 onclick="menuclose()">&times;</h1>
@@ -31,6 +33,7 @@
                 <!--line here-->
                 <h1 onclick="goHome()">Home</h1>
                 <h1 onclick="goAbout()">About</h1>
+                <h1 onclick="login()" id="loginlink">Login</h1>
                 <h1 onclick="goContact()">Contact</h1>
                 <h1 onclick="goShop()">Products</h1>
                 <h1 onclick="goCart()">Shopping Cart</h1>
@@ -39,8 +42,26 @@
         </div>
 
         <span> 
-            <button id="menubutton" onclick="menuopen()">☰</button> 
+            <button id="menubutton" onclick="menuopen()">☰ Be HAAPI, Eat Noodles</button> 
         </span>
+
+        <span>
+            <button id="homebtn" onclick="goHome()"></button>
+        </span>
+
+        <div id="loginformdiv">
+            <form id="loginform" action="jslogin.php" method="post">
+                <h1 onclick="loginclose()" id="closelogin" style="font-size:400%;">&times;</h1>
+                <h3 id="loggedinform">You are currently signed in as <?php echo $_SESSION['name'] ?>. Click here to <a href="logout.php">Log out</a>. Note that logging out will delete any products currently in your cart.</h3>
+                <img src="pictures/heart2.png">
+                <h1><i class="fa fa-user"></i> Username</h1>
+                <input type="text" placeholder="Enter username" name="username" required style="font-size:100%;" autocomplete="on">
+                <h1><i class="fa fa-key"></i> Password</h1>
+                <input type="password" placeholder="Enter password" name="password" required autocomplete="on"><br><br>
+                <button type="submit">Login!</button>
+                <p>Don't have an account? <a href="registration.php">Sign Up!</a></p>
+            </form>
+        </div>
 
         <div id="header">
             <h1>Disclaimer!</h1>
@@ -126,3 +147,11 @@ Lienesch, Hans "The Ramen Rater". “The Ramen Rater.” THE RAMEN RATER, 20 Jan
 
     </body>
 </html>
+
+<?php
+    if(isset($_SESSION['loggedin'])){
+        if($_SESSION['loggedin'] == "true" || $_SESSION['loggedin'] == "no"){
+            echo "<script>document.getElementById('loginlink').innerHTML = 'Logout';</script>";
+        }
+    }
+?>

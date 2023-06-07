@@ -17,6 +17,43 @@ function goAbout(){
 function goContact(){
     window.location.href="index.php#form";
 }
+function loggedin(){
+    Swal.fire({
+        icon: 'success',
+        title: 'You have successfully logged in!'
+      })
+}
+function loginerror(){
+    Swal.fire({
+        icon: 'error',
+        title: 'The username and/or password is incorrect!',
+        text: 'Please try again.'
+      })
+}
+/* function login(){
+    (async () => {
+
+        const { value: formValues } = await Swal.fire({
+          title: 'Login!',
+          icon: 'info',
+          html:
+            '<input id="swal-input1" class="swal2-input">' +
+            '<input id="swal-input2" class="swal2-input">',
+          focusConfirm: false,
+          preConfirm: () => {
+            return [
+              document.getElementById('swal-input1').value,
+              document.getElementById('swal-input2').value
+            ]
+          }
+        })
+        
+        if (formValues) {
+          Swal.fire(JSON.stringify(formValues))
+        }
+        
+        })()    
+} */
 
 // Get the button:
 let mybutton = document.getElementById("scrolltop");
@@ -51,6 +88,14 @@ function menuclose(){
     document.getElementById("menu").style.width = "0%";
 }
 
+function login(){
+    document.getElementById("loginformdiv").style.width="100%";
+}
+
+function loginclose(){
+    document.getElementById("loginformdiv").style.width="0%";
+}
+
 function gotoimage(id){
     window.location.href = "shop.php";
     window.onload = itemopen(id);
@@ -67,33 +112,33 @@ function signup(){
     })
 }
 
-$(function(){  // FUNCTION FOR FADE IN $(document).ready shorthand
-    $('#title').fadeIn('slow');
-  });
+// $(function(){  // FUNCTION FOR FADE IN $(document).ready shorthand
+//     $('#title').fadeIn('slow');
+//   });
   
-$(document).ready(function() {
+// $(document).ready(function() {
       
-      /* Every time the window is scrolled ... */
-      $(window).scroll( function(){
+//       /* Every time the window is scrolled ... */
+//       $(window).scroll( function(){
       
-          /* Check the location of each desired element */
-          $('.reveal').each( function(i){
+//           /* Check the location of each desired element */
+//           $('.reveal').each( function(i){
               
-              var bottom_of_object = $(this).position().top + $(this).outerHeight();
-              var bottom_of_window = $(window).scrollTop() + $(window).height();
+//               var bottom_of_object = $(this).position().top + $(this).outerHeight();
+//               var bottom_of_window = $(window).scrollTop() + $(window).height();
               
-              /* If the object is completely visible in the window, fade it it */
-              if( bottom_of_window > bottom_of_object ){
+//               /* If the object is completely visible in the window, fade it it */
+//               if( bottom_of_window > bottom_of_object ){
                   
-                  $(this).animate({'opacity':'1'},1500);
+//                   $(this).animate({'opacity':'1'},1500);
                       
-              }
+//               }
               
-          }); 
+//           }); 
       
-      });
+//       });
       
-});
+// });
 
 //For shop.php page
 
@@ -165,9 +210,11 @@ function checkout(){
 function dropdown(id){
     if(document.getElementById(id).style.display == "block"){
         document.getElementById(id).style.display = "none";
+        document.getElementById(id+"btn").innerHTML = "‣";
         
     }else{
         document.getElementById(id).style.display = "block";
+        document.getElementById(id+"btn").innerHTML = "▾";
     }
 }
 

@@ -109,7 +109,6 @@
 
         <div id="title">
             <h5 style="color:#F1BA0A;" id="welcomelogin">Welcome back, <?php echo $_SESSION['name'] ?>!</h5>
-            <h5 id="adminlink"><a href="adminpage.php">Click here to go to the admin portal.</a></h5>
             <h1>HAAPIness starts here.</h1>
             <button id="gotoshop" onclick="goShop()">Start exploring &#8594</button> 
         </div>
@@ -277,9 +276,6 @@
                 <script>loggedin()</script>";
                 echo "<style>#welcomelogin, #loggedinform{display:block;}</style>";
                 echo "<script>document.getElementById('loginlink').innerHTML = 'Logout';</script>";
-                if($_SESSION['userlogin']['isAdmin'] == 'true'){
-                    echo "<style>#adminlink{display:block;}</style>";
-                }
                 $_SESSION['loggedin'] = "no";
             }
             if($_SESSION["loggedin"] == "false"){

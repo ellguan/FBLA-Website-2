@@ -1,49 +1,33 @@
+<!DOCTYPE html>
 <?php
-require_once('mysqlconfig.php');
+require_once('config.php');
 // start session
 session_start();
-// check if user is an admin
-if(!isset($_SESSION['cart'])){
-    header("Location: index.php");
-}
-if($_SESSION['userlogin']['isAdmin'] !== 'true'){
-    // isn't admin, redirect them to a different page
-    header("Location: index.php");
-}
+if (isset($_POST['username'], $_POST['password'])) {
+    $username = $_POST['username'];
+    $secretword = $_POST['password'];
+    $sql = "SELECT * FROM adminlogin WHERE username = ? AND password = ? LIMIT 1";
+    $stmtselect = $conn->prepare($sql);
+    $result = $stmtselect->execute([$username, $secretword]);
 
-if(isset($_GET['query'])){
-    echo "<script>document.getElementById('table').style.display = block;</script>";
-
-    $query = $_GET['query']; 
-    $min_length = 3;
-
-    if(strlen($query) >= $min_length){
-
-        $sql = "SELECT * FROM noodles WHERE fullname LIKE '%".$query."%'"; 
-        $stmt = $conn->prepare($sql); 
-        $stmt->execute();
-        
-        $result = $stmt->get_result(); // get the mysqli result
-
-        //declare array to store the data of database
-        $row = []; 
-    
-        if ($result->num_rows > 0) 
-        {
-            // fetch all data from db into array 
-            $row = $result->fetch_all(MYSQLI_ASSOC);
-
+    if($result){
+        $user = $stmtselect->fetch(PDO::FETCH_ASSOC);
+        if($stmtselect->rowCount() > 0){
+            $_SESSION['adminloggedin'] = "true";
         }else{
-            echo "
-            No results, sorry.
-            ";
+            $_SESSION['adminloggedin'] = "false";
+            header("Location: adminlogin.php");
         }
-    }else{ // if query length is less than minimum
-        echo "Minimum length is ".$min_length;
-    }
+    }else{
+        echo 'There were errors while connecting to database.';
+    } 
+}else if(!isset($_SESSION['adminloggedin'])){
+    header("Location: index.php");
+}else if(isset($_SESSION['adminloggedin']) && $_SESSION['adminloggedin'] == "true"){
+}else{
+    header("Location: index.php");
 }
 ?>
-<!DOCTYPE html>
 <html>
     <head>
         <meta name="viewport" content="width=device-width,initial-scale=1"/>
@@ -97,6 +81,10 @@ if(isset($_GET['query'])){
             }
             #menubutton:hover{
                 color:#A70B0B;
+            }
+            .logout{
+                margin-left:5%;
+                font-size:200%;
             }
         </style>
     </head>
@@ -168,6 +156,20 @@ if(isset($_GET['query'])){
                         </div>
                     </form>
                 </div>
+<?php
+    if(isset($_GET['query'])){
+        echo "<script>document.getElementById('table').style.display = block;</script>";
+    
+        $query = $_GET['query']; 
+        $min_length = 3;
+    
+        if(strlen($query) >= $min_length){ 
+            try{
+    
+            $sql = "SELECT * FROM noodles WHERE fullname LIKE '%".$query."%'"; 
+            $stmt = $conn->prepare($sql); 
+            $result = $stmt->execute();
+?>
             <div class="content">
             <table id="table">
                 <tr>
@@ -180,10 +182,10 @@ if(isset($_GET['query'])){
                 </tr>
                 <!-- PHP CODE TO FETCH DATA FROM ROWS -->
                 <?php
-                    if (isset($row)){
-                    // LOOP TILL END OF DATA
-                    foreach ($row as $rows)
-                    {
+                    while($rows = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    // // LOOP TILL END OF DATA
+                    // foreach ($row as $rows)
+                    // {
                 ?>
                 <tr id="<?php echo $rows['id']; ?>row">
                     <td><?php echo $rows['id'];?></td>
@@ -194,11 +196,20 @@ if(isset($_GET['query'])){
                     <td ><button onclick="deleteentry('<?php echo $rows['id']; ?>')"><i class="fa-solid fa-trash-can"></i></button></td>
                 </tr>
                 <?php
-                    }}
+                    }
+                }catch(PDOException $e) {
+                    echo "Error: " . $e->getMessage();
+                }
+            }else{ // if query length is less than minimum
+                echo "Minimum length is ".$min_length;
+            }
+}
                 ?>
             </table>
             </div>
             </div>
+            <br>
+            <button class="logout" onclick="logout()">Log out</button>
     </body>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
@@ -224,6 +235,9 @@ if(isset($_GET['query'])){
                     }
                 }
             });
+        }
+        function logout(){
+            window.location.href = "logout.php";
         }
     </script>
 </html>

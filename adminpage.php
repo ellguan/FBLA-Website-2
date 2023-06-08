@@ -1,26 +1,30 @@
 <!DOCTYPE html>
 <?php
-require_once('config.php');
+require_once('mysqlconfig.php');
 // start session
 session_start();
 if (isset($_POST['username'], $_POST['password'])) {
-    $username = $_POST['username'];
-    $secretword = $_POST['password'];
-    $sql = "SELECT * FROM adminlogin WHERE username = ? AND password = ? LIMIT 1";
-    $stmtselect = $conn->prepare($sql);
-    $result = $stmtselect->execute([$username, $secretword]);
-
-    if($result){
-        $user = $stmtselect->fetch(PDO::FETCH_ASSOC);
-        if($stmtselect->rowCount() > 0){
-            $_SESSION['adminloggedin'] = "true";
-        }else{
+    if ($stmt = $conn->prepare('SELECT username, password FROM adminlogin WHERE username = ?')) {
+        // Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
+        $stmt->bind_param('s', $_POST['username']);
+        $stmt->execute();
+        // Store the result so we can check if the account exists in the database.
+        $stmt->store_result();
+        if ($stmt->num_rows > 0) {
+            $stmt->bind_result($username, $password);
+            $stmt->fetch();
+            if (password_verify($_POST['password'], $password)) {
+                $_SESSION['adminloggedin'] = "true";
+            } else {
+                $_SESSION['adminloggedin'] = "false";
+                header("Location: adminlogin.php");
+            }
+        } else {
             $_SESSION['adminloggedin'] = "false";
             header("Location: adminlogin.php");
         }
-    }else{
-        echo 'There were errors while connecting to database.';
-    } 
+        $stmt->close();
+    }
 }else if(!isset($_SESSION['adminloggedin'])){
     header("Location: index.php");
 }else if(isset($_SESSION['adminloggedin']) && $_SESSION['adminloggedin'] == "true"){

@@ -8,6 +8,7 @@
         $lastname    = $_POST['lastname'];
         $email       = $_POST['email'];
         $secretword1  = ($_POST['secretword']);
+        $secretword1 = password_hash($secretword1, PASSWORD_DEFAULT);
         
         $sql = "INSERT INTO login (firstname, lastname, email, secretword ) values(?,?,?,?)";
         $stmtinsert = $conn->prepare($sql);

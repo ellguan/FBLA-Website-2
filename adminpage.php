@@ -168,11 +168,15 @@ if (isset($_POST['username'], $_POST['password'])) {
         $min_length = 3;
     
         if(strlen($query) >= $min_length){ 
-            try{
     
             $sql = "SELECT * FROM noodles WHERE fullname LIKE '%".$query."%'"; 
             $stmt = $conn->prepare($sql); 
             $result = $stmt->execute();
+
+            $result = $stmt->get_result(); // get the mysqli result
+
+                //declare array to store the data of database
+                $row = [];
 ?>
             <div class="content">
             <table id="table">
@@ -186,10 +190,11 @@ if (isset($_POST['username'], $_POST['password'])) {
                 </tr>
                 <!-- PHP CODE TO FETCH DATA FROM ROWS -->
                 <?php
-                    while($rows = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    // // LOOP TILL END OF DATA
-                    // foreach ($row as $rows)
-                    // {
+                    if ($result->num_rows > 0) 
+                {
+                    // fetch all data from db into array 
+                    $row = $result->fetch_all(MYSQLI_ASSOC);
+                    foreach($row as $rows){
                 ?>
                 <tr id="<?php echo $rows['id']; ?>row">
                     <td><?php echo $rows['id'];?></td>
@@ -201,13 +206,11 @@ if (isset($_POST['username'], $_POST['password'])) {
                 </tr>
                 <?php
                     }
-                }catch(PDOException $e) {
-                    echo "Error: " . $e->getMessage();
-                }
-            }else{ // if query length is less than minimum
-                echo "Minimum length is ".$min_length;
+                }else{ // if query length is less than minimum
+                    echo "Minimum length is ".$min_length;
             }
 }
+    }
                 ?>
             </table>
             </div>
@@ -244,9 +247,7 @@ if (isset($_POST['username'], $_POST['password'])) {
             window.location.href = "logout.php";
         }
     </script>
-</html>
-
-<?php
+    <?php
     if(isset($_SESSION['addproduct'])){
         if($_SESSION['addproduct'] == "true"){
             echo "<script src='script.js'>
@@ -265,4 +266,5 @@ if (isset($_POST['username'], $_POST['password'])) {
             echo "<script>document.getElementById('loginlink').innerHTML = 'Logout';</script>";
         }
     }
-?>
+    ?>
+</html>

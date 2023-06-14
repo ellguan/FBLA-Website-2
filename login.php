@@ -1,4 +1,6 @@
 <?php
+    //THIS PAGE IS NOT USED.
+
     require_once('config.php');
 
     session_start();
@@ -12,13 +14,64 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta name="viewport" content="width=device-width,initial-scale=1"/>
         <title>Login</title>
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css">
-        <link rel="stylesheet" type="text/css" href="style.css">
-
+        <link href="style.css" rel="stylesheet" type="text/css" /> 
+        <link rel="icon" href="./pictures/heart.png" type="image/png"> <!--placeholder-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300&display=swap" rel="stylesheet">
+        <style>
+            body{
+                background-image:url("pictures/loginbg.jpg");
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                background-size: cover;
+            }
+            @media (min-width: 1000px){
+                #menuitems {
+                    width:25%;
+                }
+            }
+            h1{
+                font-size:2em;
+                font-weight:bold;
+                line-height:180%;
+            }
+            #logindiv{
+                width:80%;
+                background-color:#A70B0B;
+                margin-left:auto;
+                margin-right:auto;
+            }
+        </style>
     </head>
     <body>
+        <div id="menu" onclick="menuclose()">
+            <div id="menuitems">
+                <h1 onclick="menuclose()">&times;</h1>
+                <!--logo here-->
+                <!--line here-->
+                <h1 onclick="goHome()">Home</h1>
+                <h1 onclick="goAbout()">About</h1>
+                <h1 onclick="goContact()">Contact</h1>
+                <h1 onclick="goShop()">Products</h1>
+                <h1 onclick="goCart()">Shopping Cart</h1>
+                <h1 onclick="goCredits()">Credits</h1>
+            </div>
+        </div>
+
+        <span> 
+            <button id="menubutton" onclick="menuopen()">☰ Be HAAPI, Eat Noodles</button> 
+        </span>
+        
+        <span>
+            <button id="homebtn" onclick="goHome()"></button>
+        </span>
+
+        <div id="logindiv">
         <div class="container h-100">
             <div class="d-flex justify-content-center h-100">
                 <div class="user_card">
@@ -54,8 +107,11 @@
                 <!--TOtally will add a forgot password option-->
             </div>
         </div>
+        </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="script.js"></script>
         <script>
             $(function(){
                 $("#login").click(function(e){

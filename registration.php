@@ -7,6 +7,8 @@
     <head>
         <meta name="viewport" content="width=device-width,initial-scale=1"/>
         <title>User Registration</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <style>
 
         body {
@@ -48,7 +50,7 @@
             font-size:150%;
             padding:5%;
             height: 40%;
-            text-align: center;
+            text-align: center; 
         }
 
         #register {
@@ -85,8 +87,8 @@
         <div>
             <form action="registration.php" method="post">
                 <div class="container">
-                    <h1> Register now! </h1>   <!--this feels awkwardddd i dont like the words but i cant figure out what to change it to -->
-                    <h3> Become part of the slurp army and get member-only rewards! </h3>
+                    <h1> Become a member! </h1>   <!--this feels awkwardddd i dont like the words but i cant figure out what to change it to -->
+                    <h3> Join the slurp army and get member-only rewards! </h3>
 
                 </div>
 
@@ -95,6 +97,11 @@
                 <br>
                 <br>
                 <br>
+
+                <div class = "benefits">
+
+
+                </div>
 
                 <div class="inputs">
                     <label for="firstname">First name:</label>

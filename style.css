@@ -12,6 +12,10 @@ body{
     margin:auto;
 }
 
+#welcomelogin, #loggedinform{
+    display:none;
+}
+
 #scrolltop {
     display: none; /* Hidden by default */
     position: fixed; /* Fixed/sticky position */
@@ -199,6 +203,7 @@ button:hover{
 	position: relative;
 	display: flex;
     padding:5%;
+    
 }
 /* #flagslideshow:after {
     content: "";
@@ -380,7 +385,7 @@ textarea{
     resize:none;
 }
 
-input[type=text], textarea, input[type=password]{
+input[type=text], textarea, input[type=password], input[type=email]{
     padding:1%;
     background-color:white;
     -webkit-transition: 0.5s;
@@ -396,7 +401,7 @@ input[type=text]:hover, textarea {
     border: 1% solid black;
 }
 
-input[type=text], input[type=password]{
+input[type=text], input[type=password], input[type=email]{
     width:100%;
 }
 
@@ -448,13 +453,13 @@ input[type=submit]:hover{
     margin-left:5%;
     padding:5%;
 }
-#header h1, h2{
+/* #header h1, h2{
     cursor:pointer;
     transition-duration:.3s;
 }
 #header h1:hover{
     color:#A70B0B;
-}
+} */
 #sidebyside{
     margin-left:4%;
     margin-right:4%;

@@ -36,9 +36,6 @@
                 height:10%;
                 width:10%;
             }
-            #welcomelogin, #loggedinform, #adminlink{
-                display:none;
-            }
 
             @media (max-width: 1000px){
                 #slideshow{
@@ -75,6 +72,7 @@
                 <h1 onclick="goHome()">Home</h1>
                 <h1 onclick="goAbout()">About</h1>
                 <h1 onclick="login()" id="loginlink">Login</h1>
+                <h1 onclick="goRegistration()">Registration</h1>
                 <h1 onclick="goContact()">Contact</h1>
                 <h1 onclick="goShop()">Products</h1>
                 <h1 onclick="goCart()">Shopping Cart</h1>
@@ -115,6 +113,7 @@
 
         <div id="slideshow" class="reveal">
             <h1>SHOP BY...</h1>
+            <h2>COUNTRY?</h2>
             <div id="flagslideshow">
                 <div class="flags">
                     <img src="pictures/flags/china.png" onclick="filter('china')" class="startflag">
@@ -129,7 +128,8 @@
                     <img src="pictures/flags/vietnam.png" onclick="filter('vietnam')">
                 </div>
             </div>
-            <h1>Country?</h1>
+            <h2>SPICE LEVEL?</h2>
+            <p>1 (not spicy) to 5 (very spicy)</p>
             <div id="spicelevel">
                     <img src="pictures/spicelevel/spice1_square.png" onclick="filter('spice1')">
                     <img src="pictures/spicelevel/spice2_square.png" onclick="filter('spice2')">
@@ -139,8 +139,7 @@
             </div>
             <br>
             <br>
-            <h1>Spice level?</h1>
-            <p>1 (not spicy) to 5 (very spicy)</p>
+            
             <!-- 
             <div id="taste">
             </div>
@@ -216,7 +215,7 @@
                     <p>Asian American Pacific Islanders make up a cultural mosaic in America, hosting a manifold assortment of unique customs and traditions. As of the 2020 Census, 24 million people identified as Asian and 1.6 million identified as Native Hawaiian and Other Pacific Islander, either as their only identity or in combination with another identity. It is easy for one to get lost in the vastness of the Americas when it is an ocean away from one’s own roots. </p>
                     
                 </div>
-                <p>The founders of this business, Ellen Guan, Diya Kamath, and Laasya Nagumalli, created this website as a means of interlacing one’s own American identity with the cultures from which we all come; Ellen, Laasya, and Diya are all members of the AAPI community, and what connects people better than food? Noodles, an integral part to countless AAPI cuisines, and instant food, a foundational comfort food of American recreation, birthed the initiative: Be HAAPI, Eat Noodles. Authentic instant noodles are not readily available in many parts of the world, but HAAPIness will ship to any address, no matter the distance. With a commitment to equity and equal access, just add water and heat to enjoy a filling meal from any AAPI country that you wish. With HAAPIness, you can resuscitate connectedness to your own culture and customs.</p>
+                <p>The founders of this business, Ellen Guan, Diya Kamath, and Laasya Nagumalli, created this website as a means of interlacing one’s own American identity with the cultures from which we all come; Ellen, Laasya, and Diya are all members of the AAPI community, and what connects people better than food? Noodles, an integral part to countless AAPI cuisines, and instant food, a foundational comfort food of American recreation, birthed the initiative: Be HAAPI, Eat Noodles. Authentic instant noodles are not readily available in many parts of the world, but Be Haapi Eat Noodles will ship to any address, no matter the distance. With a commitment to equity and equal access, just add water and heat to enjoy a filling meal from any AAPI country that you wish. With HAAPIness, you can resuscitate connectedness to your own culture and customs.</p>
                 <h3>Be HAAPI, Eat Noodles!</h3>
             </div>
         </div>
@@ -232,7 +231,7 @@
                         </div>
                         <div>
                             <label for="email">Email:</label><br>
-                            <input type="text" id="email" name="email" required autocomplete="on"><br>
+                            <input type="email" id="email" name="email" required autocomplete="on"><br>
                         </div>
                     </div>
                     <br>
@@ -250,6 +249,7 @@
         </div>
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="script.js" type="text/javascript"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
         <script>
             function signup(){
                 Swal.fire({
@@ -289,6 +289,23 @@
                 echo "<script>document.getElementById('loginlink').innerHTML = 'Logout';</script>";
             }
         }
+
+        if(isset($_SESSION['registered'])){
+            echo $_SESSION['registered'];
+            if($_SESSION['registered'] == "true"){
+                echo "<script src='script.js'>
+                </script><script src='//cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+                <script>register()</script>";
+                $_SESSION['registered'] = "else";
+            }
+            else if($_SESSION['registered'] == "false"){
+                echo "<script src='script.js'>
+                </script><script src='//cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+                <script>registererror()</script>";
+                $_SESSION['registered'] = "else";
+            }
+        }
+
         $name = $email = $message = $username = $secretword = "";
         $emailErr = "";
 
@@ -309,26 +326,6 @@
             $data = htmlspecialchars($data);
             return $data;
         }
-
-        //attempting to add random prices for all of the noodles.
-        // $priceoptions = array(3, 3.5, 4, 4.5, 5);
-        // $prices = array();
-        // for ($x = 0; $x <= 126; $x++) {
-        //     array_push($prices, $priceoptions[rand(0, 4)]);
-        // }
-        // echo implode(",", $prices);
-        // $prices = array(4,3.5,3,4,4,4,3.5,4,4,4.5,4,3.5,3,3.5,4.5,5,3.5,4.5,3.5,3.5,4.5,3,3,4,3,5,3,5,3,5,3.5,4,3.5,3.5,4,4.5,5,4.5,5,4,5,5,4.5,4.5,4.5,4.5,4,4,4.5,5,5,5,5,4,3,4,3,3.5,3.5,5,5,4,3.5,4,4,3,5,4,4,4.5,3,4.5,3,3.5,4,3,5,3,3.5,4,3,4,5,3,4,5,4.5,3,3.5,5,3,4,4,4.5,3.5,5,3.5,3,4.5,3.5,4.5,4.5,5,5,4,3.5,5,3,5,3.5,4.5,4.5,3.5,5,4,3,3,3,4,3,4,3,3,4,3,3.5,3.5);
-        // $sql = "UPDATE noodles SET price=";
-        // $stmt= $conn->prepare($sql);
-        // $stmt->bind_param("i", $prices);
-        // $stmt->execute();
-
-        // $sql = "INSERT INTO noodles (priced) values(4), (3.5), (3), (4), (4), (4), (3.5), (4), (4), (4.5), (4), (3.5), (3), (3.5), (4.5), (5), (3.5), (4.5), (3.5), (3.5), (4.5), (3), (3), (4), (3), (5), (3), (5), (3), (5), (3.5), (4), (3.5), (3.5), (4), (4.5), (5), (4.5), (5), (4), (5), (5), (4.5), (4.5), (4.5), (4.5), (4), (4), (4.5), (5), (5), (5), (5), (4), (3), (4), (3), (3.5), (3.5), (5), (5), (4), (3.5), (4), (4), (3), (5), (4), (4), (4.5), (3), (4.5), (3), (3.5), (4), (3), (5), (3), (3.5), (4), (3), (4), (5), (3), (4), (5), (4.5), (3), (3.5), (5), (3), (4), (4), (4.5), (3.5), (5), (3.5), (3), (4.5), (3.5), (4.5), (4.5), (5), (5), (4), (3.5), (5), (3), (5), (3.5), (4.5), (4.5), (3.5), (5), (4), (3), (3), (3), (4), (3), (4), (3), (3), (4), (3), (3.5), (3.5)";
-        // if ($conn->query($sql) === TRUE) {
-        //     echo "New record created successfully";
-        //   } else {
-        //     echo "Error: " . $sql . "<br>" . $conn->error;
-        //   }
 
         // $sql = "INSERT INTO noodles (id, image, fullname, price, filters) values('myojo', 'pictures/noodles/myojo.png', 'Myojo Ramen', '3', 'addtocart myojo pacificislanders carolineislands spice1 savory peanutfree sesamefree fishfree treenutsfree shellfishfree'), ('nissinstirfry', 'pictures/noodles/nissinstirfry.png', 'FULLNAME', '3', 'addtocart nissinstirfry pacificislanders northernmarianaislands spice3 savory peanutfree fishfree treenutsfree shellfishfree'), ('kame', 'pictures/noodles/kame.png', 'KaMe Stir Fry Hokkien Noodles', '3', 'addtocart kame pacificislanders fiji spice1 savory peanutfree sesamefree fishfree treenutsfree shellfishfree'), ('simplyasia', 'pictures/noodles/simplyasia.png', 'Simply Asia Chinese Style Lo Mein Noodles', '3', 'addtocart simplyasia pacificislanders newcaledonia spice3 savory peanutfree sesamefree fishfree treenutsfree shellfishfree'), ('nissinteriyaki', 'pictures/noodles/nissinteriyaki.png', 'Nissin Chow Mein Teriyaki Beef Flavor', '3', 'addtocart nissinteriyaki pacificislanders papuanewguinea spice4 savory peanutfree sesamefree fishfree treenutsfree shellfishfree'), ('oceans', 'pictures/noodles/oceans.png', 'Oceans Halo Organic Ramen', '3', 'addtocart oceans pacificislanders solomonislands spice2 savory peanutfree sesamefree fishfree treenutsfree shellfishfree'), ('perfectearth', 'pictures/noodles/perfectearth.png', 'Perfect Earth Tom Yum Organic Instant Noodles', '3', 'addtocart perfectearth pacificislanders vanuatu spice3 savory glutenfree peanutfree sesamefree fishfree treenutsfree shellfishfree'), ('cung', 'pictures/noodles/cung.png', 'Cung Ding Kool', '3', 'addtocart cung pacificislanders marshallislands spice5 spicy peanutfree sesamefree treenutsfree'), ('immi', 'pictures/noodles/immi.png', 'Immi', '3', 'addtocart immi pacificislanders newzealand spice3 savory peanutfree fishfree treenutsfree shellfishfree'), ('sedaap', 'pictures/noodles/sedaap.png', 'Sedaap Supreme', '3', 'addtocart sedaap pacificislanders samoa spice3 savory peanutfree sesamefree fishfree treenutsfree shellfishfree'), ('rama', 'pictures/noodles/rama.png', 'Rama Food', '3', 'addtocart rama pacificislanders hawaiian spice2 savory glutenfree peanutfree sesamefree fishfree treenutsfree shellfishfree')";
         // if ($conn->query($sql) === TRUE) {

@@ -34,6 +34,7 @@
                 <h1 onclick="goHome()">Home</h1>
                 <h1 onclick="goAbout()">About</h1>
                 <h1 onclick="login()" id="loginlink">Login</h1>
+                <h1 onclick="goRegistration()">Registration</h1>
                 <h1 onclick="goContact()">Contact</h1>
                 <h1 onclick="goShop()">Products</h1>
                 <h1 onclick="goCart()">Shopping Cart</h1>
@@ -152,6 +153,7 @@ Lienesch, Hans "The Ramen Rater". “The Ramen Rater.” THE RAMEN RATER, 20 Jan
     if(isset($_SESSION['loggedin'])){
         if($_SESSION['loggedin'] == "true" || $_SESSION['loggedin'] == "no"){
             echo "<script>document.getElementById('loginlink').innerHTML = 'Logout';</script>";
+            echo "<style>#loggedinform {display:block;}</style>";
         }
     }
 ?>

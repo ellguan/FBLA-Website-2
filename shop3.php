@@ -75,6 +75,7 @@
                 <h1 onclick="goHome()">Home</h1>
                 <h1 onclick="goAbout()">About</h1>
                 <h1 onclick="login()" id="loginlink">Login</h1>
+                <h1 onclick="goRegistration()">Registration</h1>
                 <h1 onclick="goContact()">Contact</h1>
                 <h1 onclick="goShop()">Products</h1>
                 <h1 onclick="goCart()">Shopping Cart</h1>
@@ -303,7 +304,7 @@
                         <input type="checkbox" value="southeastasia" name="filters[]" id="southeastasia">
                         <label for="southeastasia">South East Asia</label><br>
                         <input type="checkbox" value="westernasiaterritories" name="filters[]" id="westernasiaterritories">
-                        <label for="westernasiaterritories">Western Asia or Territories</label>
+                        <label for="westernasiaterritories">Western Asia or Territories</label><br>
                         <input type="checkbox" value="pacificislanders" name="filters[]" id="pacificislanders">
                         <label for="pacificislanders">Pacific Islands</label>
                     </div>
@@ -475,6 +476,7 @@
         if(isset($_SESSION['loggedin'])){
             if($_SESSION['loggedin'] == "true" || $_SESSION['loggedin'] == "no"){
                 echo "<script>document.getElementById('loginlink').innerHTML = 'Logout';</script>";
+                echo "<style>#loggedinform {display:block;}</style>";
             }
         }
     ?>

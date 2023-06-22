@@ -95,7 +95,7 @@ if (isset($_POST['username'], $_POST['password'])) {
     <body>
     <button onclick="topFunction()" id="scrolltop" title="Go to top">&uarr;</button>
 
-        <div id="menu" onclick="menuclose()">
+    <div id="menu" onclick="menuclose()">
             <div id="menuitems">
                 <h1 onclick="menuclose()">&times;</h1>
                 <!--logo here-->
@@ -103,6 +103,7 @@ if (isset($_POST['username'], $_POST['password'])) {
                 <h1 onclick="goHome()">Home</h1>
                 <h1 onclick="goAbout()">About</h1>
                 <h1 onclick="login()" id="loginlink">Login</h1>
+                <h1 onclick="goRegistration()">Registration</h1>
                 <h1 onclick="goContact()">Contact</h1>
                 <h1 onclick="goShop()">Products</h1>
                 <h1 onclick="goCart()">Shopping Cart</h1>
@@ -217,6 +218,8 @@ if (isset($_POST['username'], $_POST['password'])) {
             </div>
             <br>
             <button class="logout" onclick="logout()">Log out</button>
+            <br>
+            <div id="footer">&copy; Be HAAPI, Eat Noodles 2022-<?php echo date("Y");?></div>
     </body>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
@@ -264,6 +267,7 @@ if (isset($_POST['username'], $_POST['password'])) {
     if(isset($_SESSION['loggedin'])){
         if($_SESSION['loggedin'] == "true" || $_SESSION['loggedin'] == "no"){
             echo "<script>document.getElementById('loginlink').innerHTML = 'Logout';</script>";
+            echo "<style>#loggedinform {display:block;}</style>";
         }
     }
     ?>

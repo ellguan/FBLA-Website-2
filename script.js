@@ -17,6 +17,9 @@ function goAbout(){
 function goContact(){
     window.location.href="index.php#form";
 }
+function goRegistration(){
+    window.location.href="registration.php"
+}
 function loggedin(){
     Swal.fire({
         icon: 'success',
@@ -56,7 +59,7 @@ function loginerror(){
 } */
 
 // Get the button:
-let mybutton = document.getElementById("scrolltop");
+var mybutton = document.getElementById("scrolltop");
 
 // When the user scrolls down 20px from the top of the document, show the button
 window.onscroll = function() {scrollFunction()};
@@ -262,4 +265,20 @@ function pay(){
             window.location.href = "index.php";
         }
       })
+}
+
+//For registration.php page
+function register(){
+    Swal.fire({
+                        'title': 'Account created!',
+                        'text': 'We are so excited to have you here!',
+                        'icon': 'success'
+                    })
+}
+function registererror(){
+    Swal.fire({
+                        'title': 'Oops, something went wrong.',
+                        'text': 'You may not have entered correct values. Please try again!',
+                        'icon': 'error'
+                    })
 }

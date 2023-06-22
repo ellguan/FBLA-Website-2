@@ -1,5 +1,6 @@
 <?php
     require_once('config.php');
+    session_start();
 ?>
 
 <?php
@@ -7,16 +8,19 @@
         $firstname   = $_POST['firstname'];
         $lastname    = $_POST['lastname'];
         $email       = $_POST['email'];
+        $username       = $_POST['username'];
         $secretword1  = ($_POST['secretword']);
         $secretword1 = password_hash($secretword1, PASSWORD_DEFAULT);
         
-        $sql = "INSERT INTO login (firstname, lastname, email, secretword ) values(?,?,?,?)";
+        $sql = "INSERT INTO login (firstname, lastname, email, username, secretword ) values(?,?,?,?,?)";
         $stmtinsert = $conn->prepare($sql);
-        $result = $stmtinsert->execute([$firstname, $lastname, $email, $secretword1]);
+        $result = $stmtinsert->execute([$firstname, $lastname, $email, $username, $secretword1]);
         if($result){
-            echo 'We are excited to have you here! :)';
+            $_SESSION['registered'] = "true";
+            echo '<script>window.location.href = "index.php";</script>';
         }else{
-            echo 'There were errors while saving the data.';
+            $_SESSION['registered'] = "false";
+            echo '<script>window.location.href = "index.php";</script>';
         }
     }else{
         echo 'No data';

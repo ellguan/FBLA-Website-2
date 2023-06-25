@@ -125,7 +125,7 @@
                 <h2>The best part is... signing up is absolutely FREE!</h2>
                 <br>
                 <p>Already have an account? </p>
-                <p id="loginp" onclick="login()">Log in!</p>
+                <p id="loginp" onclick="login()">Log in here!</p>
                 </div>
                 <div style="flex-grow: 1" id="picdiv">
                     <img id="registrationpic" src="pictures/registrationphoto.jpg">

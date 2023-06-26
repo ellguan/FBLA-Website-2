@@ -203,7 +203,7 @@
                 </div>
                 <h1>SORT BY:</h1>
                 <form action="<?php $_SERVER['PHP_SELF'] ?>" method="GET" id="filterform">
-                    <h2 onclick="dropdown('countrydropdown')">‣ Country?</h2> <!--change-->
+                    <h2 onclick="dropdown('countrydropdown')"><div class="filterblock"><span id="countrydropdownbtn">‣</span><span> Country?</span></div></h2>
                     <div id="countrydropdown" class="dropdown">
                         <input type="checkbox" value="china" name="filters[]" id="china">
                         <label for="china">China</label><br>
@@ -294,7 +294,7 @@
                         <input type="checkbox" value="hawaii" name="filters[]" id="hawaii">
                         <label for="hawaii">Hawaii</label><br>
                     </div>
-                    <h2 onclick="dropdown('regiondropdown')">‣ Region?</h2>
+                    <h2 onclick="dropdown('regiondropdown')"><div class="filterblock"><span id="regiondropdownbtn">‣</span><span> Region?</span></div></h2>
                     <div id="regiondropdown" class="dropdown">
                         <input type="checkbox" value="eastasia" name="filters[]" id="eastasia">
                         <label for="eastasia">East Asia</label><br>
@@ -309,7 +309,7 @@
                         <input type="checkbox" value="pacificislanders" name="filters[]" id="pacificislanders">
                         <label for="pacificislanders">Pacific Islands</label>
                     </div>
-                    <h2 onclick="dropdown('spicedropdown')">‣ Spice Level?</h2>
+                    <h2 onclick="dropdown('spicedropdown')"><div class="filterblock"><span id="spicedropdownbtn">‣</span><span> Spice Level?</span></div></h2>
                     <div id="spicedropdown" class="dropdown">
                         <input type="checkbox" value="spice1" name="filters[]" id="spice1">
                         <label for="spice1">1 (Not spicy)</label><br>
@@ -322,7 +322,7 @@
                         <input type="checkbox" value="spice5" name="filters[]" id="spice5">
                         <label for="spice5">5 (Very spicy)</label>
                     </div>
-                    <h2 onclick="dropdown('allergydropdown')">‣ Common Allergy Restrictions?</h2>
+                    <h2 onclick="dropdown('allergydropdown')"><div class="filterblock"><span id="allergydropdownbtn">‣</span><span> Dietary Restrictions?</span></div></h2>
                     <div id="allergydropdown" class="dropdown">
                         <input type="checkbox" value="glutenfree" name="filters[]" id="glutenfree">
                         <label for="glutenfree">Gluten-free</label><br>
@@ -335,9 +335,11 @@
                         <input type="checkbox" value="nutsfree" name="filters[]" id="nutsfree">
                         <label for="nutssfree">Treenuts-free</label><br>
                         <input type="checkbox" value="shellfishfree" name="filters[]" id="shellfishfree">
-                        <label for="shellfishfree">Shellfish-free</label>
+                        <label for="shellfishfree">Shellfish-free</label><br>
+                        <input type="checkbox" value="plantbased" name="filters[]" id="plantbased">
+                        <label for="plantbased">Plantbased</label>
                     </div>
-                    <h2 onclick="dropdown('tastedropdown')">‣ Taste?</h2>
+                    <h2 onclick="dropdown('tastedropdown')"><div class="filterblock"><span id="tastedropdownbtn">‣</span><span> Taste?</span></div></h2>
                     <div id="tastedropdown" class="dropdown">
                         <input type="checkbox" value="spicy" name="filters[]" id="spicy">
                         <label for="spicy">Spicy</label><br>

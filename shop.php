@@ -348,7 +348,7 @@
                         <input type="checkbox" value="spice5" name="filters[]" id="spice5">
                         <label for="spice5">5 (Very spicy)</label>
                     </div>
-                    <h2 onclick="dropdown('allergydropdown')"><div class="filterblock"><span id="allergydropdownbtn">‣</span><span> Common Allergies?</span></div></h2>
+                    <h2 onclick="dropdown('allergydropdown')"><div class="filterblock"><span id="allergydropdownbtn">‣</span><span> Dietary Restrictions?</span></div></h2>
                     <div id="allergydropdown" class="dropdown">
                         <input type="checkbox" value="glutenfree" name="filters[]" id="glutenfree">
                         <label for="glutenfree">Gluten-free</label><br>
@@ -361,7 +361,9 @@
                         <input type="checkbox" value="nutsfree" name="filters[]" id="nutsfree">
                         <label for="nutssfree">Treenuts-free</label><br>
                         <input type="checkbox" value="shellfishfree" name="filters[]" id="shellfishfree">
-                        <label for="shellfishfree">Shellfish-free</label>
+                        <label for="shellfishfree">Shellfish-free</label><br>
+                        <input type="checkbox" value="plantbased" name="filters[]" id="plantbased">
+                        <label for="plantbased">Plantbased</label>
                     </div>
                     <h2 onclick="dropdown('tastedropdown')"><div class="filterblock"><span id="tastedropdownbtn">‣</span><span> Taste?</span></div></h2>
                     <div id="tastedropdown" class="dropdown">

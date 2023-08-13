@@ -4,7 +4,7 @@
 
     if (count($_SESSION['cart']) != 0){
         $in  = str_repeat('?,', count($_SESSION['cart']) - 1) . '?';
-        $sql = "SELECT * FROM noodles WHERE id IN ($in)"; 
+        $sql = "SELECT * FROM noodles2 WHERE id IN ($in)"; 
         $stmt = $conn->prepare($sql); 
         $types = str_repeat('s', count($_SESSION['cart']));
         $stmt->bind_param($types, ...$_SESSION['cart']);

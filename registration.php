@@ -122,6 +122,7 @@
                 <p>→ One free noodle pack of your choice for every five orders!</p>
                 <p>→ Promotions tailored to your frequent orders sent straight to your inbox!</p>
                 <p>→ Be the first to be notified of exclusive products!</p>
+                <p>→ Automatically be signed up to our mailing list!</p>
                 <h2>The best part is... signing up is absolutely FREE!</h2>
                 <br>
                 <p>Already have an account? </p>

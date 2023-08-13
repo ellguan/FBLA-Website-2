@@ -3,7 +3,7 @@ require_once('config.php');
 session_start();
 if(isset($_POST)){
     $noodleid = $_POST['id'];
-    $sql = "DELETE FROM noodles WHERE id = ?";
+    $sql = "DELETE FROM noodles2 WHERE id = ?";
     $stmtinsert = $conn->prepare($sql);
     $result = $stmtinsert->execute([$noodleid]);
     if($result){

@@ -7,7 +7,7 @@
         exit('Please fill both the username and password fields!');
     }
 
-    if ($stmt = $conn->prepare('SELECT firstname, lastname, username, secretword FROM login WHERE username = ?')) {
+    if ($stmt = $conn->prepare('SELECT firstname, lastname, username, secretword FROM login2 WHERE username = ?')) {
         // Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
         $stmt->bind_param('s', $_POST['username']);
         $stmt->execute();

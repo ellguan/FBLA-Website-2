@@ -4,7 +4,7 @@ require_once('mysqlconfig.php');
 // start session
 session_start();
 if (isset($_POST['username'], $_POST['password'])) {
-    if ($stmt = $conn->prepare('SELECT username, password FROM adminlogin WHERE username = ?')) {
+    if ($stmt = $conn->prepare('SELECT username, password FROM adminlogin2 WHERE username = ?')) {
         // Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
         $stmt->bind_param('s', $_POST['username']);
         $stmt->execute();
@@ -170,7 +170,7 @@ if (isset($_POST['username'], $_POST['password'])) {
     
         if(strlen($query) >= $min_length){ 
     
-            $sql = "SELECT * FROM noodles WHERE fullname LIKE '%".$query."%'"; 
+            $sql = "SELECT * FROM noodles2 WHERE fullname LIKE '%".$query."%'"; 
             $stmt = $conn->prepare($sql); 
             $result = $stmt->execute();
 

@@ -12,7 +12,7 @@
         $secretword1  = ($_POST['secretword']);
         $secretword1 = password_hash($secretword1, PASSWORD_DEFAULT);
         
-        $sql = "INSERT INTO login (firstname, lastname, email, username, secretword ) values(?,?,?,?,?)";
+        $sql = "INSERT INTO login2 (firstname, lastname, email, username, secretword ) values(?,?,?,?,?)";
         $stmtinsert = $conn->prepare($sql);
         $result = $stmtinsert->execute([$firstname, $lastname, $email, $username, $secretword1]);
         if($result){

@@ -3,7 +3,7 @@
     require_once('mysqlconfig.php');
 
     //selecting values from the table and display them
-    $sql = " SELECT * FROM noodles";
+    $sql = " SELECT * FROM noodles2";
     $result = $conn->query($sql);
     $_SESSION["allnoodles"] = array();
     while($row=$result->fetch_assoc()){
@@ -456,7 +456,7 @@
                 </script>
                 ";
 
-                $sql = "SELECT * FROM noodles WHERE fullname LIKE '%".$query."%'"; 
+                $sql = "SELECT * FROM noodles2 WHERE fullname LIKE '%".$query."%'"; 
                 $stmt = $conn->prepare($sql); 
                 $stmt->execute();
                 

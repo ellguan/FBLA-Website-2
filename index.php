@@ -212,10 +212,10 @@
                 <h3>Authentic ingredients. Straight to your doorstep.</h3>
                 <div id="abouttitle">
                     <img src="https://images.unsplash.com/photo-1585032226651-759b368d7246?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=992&q=80">
-                    <p>Asian American Pacific Islanders make up a cultural mosaic in America, hosting a manifold assortment of unique customs and traditions. As of the 2020 Census, 24 million people identified as Asian and 1.6 million identified as Native Hawaiian and Other Pacific Islander, either as their only identity or in combination with another identity. It is easy for one to get lost in the vastness of the Americas when it is an ocean away from one’s own roots. </p>
+                    <p>Asian American and Pacific Islanders form a cultural mosaic in America, representing a manifold assortment of unique customs and traditions. As of the 2020 Census, 24 million people identified as Asian and 1.6 million identified as Native Hawaiian or Other Pacific Islander, either as their only identity or in combination with another identity. It is easy for one to feel lost in the vastness of the Americas, far away from one’s own roots.  </p>
                     
                 </div>
-                <p>The founders of this business, Ellen Guan, Diya Kamath, and Laasya Nagumalli, created this website as a means of interlacing one’s own American identity with the cultures from which we all come; Ellen, Laasya, and Diya are all members of the AAPI community, and what connects people better than food? Noodles, an integral part to countless AAPI cuisines, and instant food, a foundational comfort food of American recreation, birthed the initiative: Be HAAPI, Eat Noodles. Authentic instant noodles are not readily available in many parts of the world, but Be HAAPI Eat Noodles will ship to any address, no matter the distance. With a commitment to equity and equal access, just add water and heat to enjoy a filling meal from any AAPI country that you wish. With HAAPIness, you can resuscitate connectedness to your own culture and customs.</p>
+                <p>The founders of this business, Ellen Guan, Diya Kamath, and Laasya Nagumalli, created this website as a means of interlacing one’s own American identity with the cultures from which we all come. All three of us are all members of the AAPI community, and what connects people better than food? Noodles, an integral part to countless AAPI cuisines, and instant food, a foundational comfort food of American recreation, birthed the initiative: Be HAAPI, Eat Noodles. Authentic instant noodles are not readily available in many parts of the world, but HAAPIness will ship to any address, no matter the distance. With a commitment to equity and equal access, simply add water and heat to enjoy a filling meal from any AAPI country that you wish. With HAAPIness, you can you can reconnect with your culture and customs, while sharing them with others.</p>
                 <h3>Be HAAPI, Eat Noodles!</h3>
             </div>
         </div>
@@ -334,4 +334,5 @@
         //     echo "Error: " . $sql . "<br>" . $conn->error;
         //   }
     ?>
+
 </html>
